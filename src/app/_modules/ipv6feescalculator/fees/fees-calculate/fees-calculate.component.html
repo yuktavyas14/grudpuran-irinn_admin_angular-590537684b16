@@ -1,0 +1,204 @@
+<main id="main" class="main">
+	<div class="row">
+    <div class="col pagetitle">
+      <h1>Fees Management</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">IPV6 Management</li>
+          <li class="breadcrumb-item active">Fees Calculation</li>
+        </ol>
+      </nav>
+    </div>
+
+
+    <div class="col-sm-4"><a routerLink="/feescalculate/fees/add" type="submit" class="btn btn-primary bx-pull-right">+ Add Fees</a></div>
+
+	  </div>
+
+
+	  <!-- End Page Title -->
+   
+<div>
+  <form [formGroup]="addForm" class="row align-items-end mb-4">
+    <div class="col-md-3">
+      <label class="mb-2">ipBlock4</label>
+      <input type="search" class="form-control" placeholder="Search ipBlock4" formControlName="ipBlock4"/>
+    </div>
+    <div class="col-md-3">
+      <label class="mb-2">ipBlock4</label>
+      <input type="search" class="form-control" placeholder="Search ipBlock6" formControlName="ipBlock6"/>
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-primary" (click)=search()>Search</button>
+    </div>
+
+  
+</form>
+</div>
+	  <div class="card" *ngIf="!searchKey">
+            <div class="card-body" *ngIf="feesList?.length>0">
+          
+              <table class="table datatable dataTable-table">
+                <thead>
+                  <tr>
+                    <th scope="col"> Sr.No</th>
+                 
+                    <th scope="col">ipBlock4</th>
+                    <th scope="col">ipBlock6</th>
+                    <th scope="col">ipv4Fee</th>
+					          <th scope="col">ipv4addresses</th>
+                    <th scope="col">ipv6Fee</th>
+                    <th scope="col">ipv6addresses</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of feesList| paginate: config;let i = index">
+                    <th scope="row">{{ page == 1 ? i + 1 : (page - 1) * itemsPerPage + i + 1 }}</th>
+                   
+             
+                    <td>{{user.ipBlock4?user.ipBlock4:'-'}}</td>
+                    <td>{{user.ipBlock6?user.ipBlock6:'-'}}</td>
+                    <td>{{getUseripv4Fee(user)}}</td>
+                    <td>{{user.ipv4addresses?user.ipv4addresses:'-'}}</td>
+                    <td>{{getUseripv6Fee(user)}}</td>
+                    <td>{{user.ipv6addresses?user.ipv6addresses:'-'}}</td>
+                 
+                    <!-- <td><a class="view" [routerLink]="['/menu/menu-list',user.id]">view</a></td> -->
+                    <td class="text-right">
+                      <div class="btn-group">
+                        <button
+                          class="act_button"
+                          type="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <a
+                            class="dropdown-item"
+                            (click)="onView(user)"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >View/Edit</a
+                          >
+                          <!-- <a
+                            class="dropdown-item"
+                            href="#"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >Edit</a
+                          > -->
+                          <!-- <a
+                            class="dropdown-item"
+                            (click)="onUpdateStatus(user)"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >{{user.status?'Deactivate':'Active'}}</a
+                          > -->
+                  <!-- <a class="dropdown-item" (click)="onDelete(user.id)" data-toggle="modal" data-target="#edit_user">Delete</a> -->
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+              <ng-container *ngIf="feesList?.length>0 && totalrecored">
+                <div class="col-12 text-end">
+                  <pagination-controls
+                    directionLinks:true
+                    showFirstLastButtons:true
+                    (pageChange)="pageChange($event)"
+                    class="my-pagination"
+                  >
+                  </pagination-controls>
+                </div>
+              </ng-container>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+          <div class="card" *ngIf="searchKey">
+            <div class="card-body" >
+          
+              <table class="table datatable dataTable-table">
+                <thead>
+                  <tr>
+                    <th scope="col"> Sr.No</th>
+                 
+                    <th scope="col">ipBlock4</th>
+                    <th scope="col">ipBlock6</th>
+                    <th scope="col">ipv4Fee</th>
+					          <th scope="col">ipv4addresses</th>
+                    <th scope="col">ipv6Fee</th>
+                    <th scope="col">ipv6addresses</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <th scope="row">1.</th>
+                   
+             
+                    <td>{{searchList.ipBlock4?searchList.ipBlock4:'-'}}</td>
+                    <td>{{searchList.ipBlock6?searchList.ipBlock6:'-'}}</td>
+                    <td>{{getUseripv4Fee(searchList)}}</td>
+                    <td>{{searchList.ipv4addresses?searchList.ipv4addresses:'-'}}</td>
+                    <td>{{getUseripv6Fee(searchList)}}</td>
+                    <td>{{searchList.ipv6addresses?searchList.ipv6addresses:'-'}}</td>
+                 
+                    <!-- <td><a class="view" [routerLink]="['/menu/menu-list',user.id]">view</a></td> -->
+                    <td class="text-right">
+                      <div class="btn-group">
+                        <button
+                          class="act_button"
+                          type="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <a
+                            class="dropdown-item"
+                            (click)="onView(searchList)"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >View/Edit</a
+                          >
+                          <!-- <a
+                            class="dropdown-item"
+                            href="#"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >Edit</a
+                          > -->
+                          <!-- <a
+                            class="dropdown-item"
+                            (click)="onUpdateStatus(user)"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >{{user.status?'Deactivate':'Active'}}</a
+                          > -->
+                  <!-- <a class="dropdown-item" (click)="onDelete(user.id)" data-toggle="modal" data-target="#edit_user">Delete</a> -->
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+             
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+
+
+
+
+
+  </main><!-- End #main -->
+

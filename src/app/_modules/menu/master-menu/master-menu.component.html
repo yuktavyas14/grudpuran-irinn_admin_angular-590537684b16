@@ -1,0 +1,142 @@
+<main id="main" class="main">
+	<div class="row">
+    <div class="col pagetitle">
+      <h1>Header Management</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Menu Management</li>
+          <li class="breadcrumb-item active">Header List</li>
+        </ol>
+      </nav>
+    </div>
+
+		<div class="col-sm-4"><a routerLink="/menu/master-menu/add" type="submit" class="btn btn-primary bx-pull-right">+ Add Header</a></div>
+	  </div>
+
+
+	  <!-- End Page Title -->
+    <div class="card">
+      <div class="card-body">
+        <!-- Multi Columns Form -->
+        <form class="row g-3 pt-3">
+          <div class="col-md-4">
+            <label class="form-label">Language:</label>
+            <select
+              class="form-select"
+              (change)="getheader()"
+              name="languageId"
+              [(ngModel)]="languageId"
+            >
+            <ng-container *ngFor="let lang of languageList">
+              <option [value]="lang.id">{{lang.language}}</option>
+            </ng-container>
+              
+            </select>
+          </div>
+   
+          
+          
+
+          <!-- <div class="col-md-4">
+            <label class="form-label d-block">&nbsp;</label>
+            <button
+              type="submit"
+              class="btn btn-primary"
+               
+            >
+              Submit
+            </button>
+          </div> -->
+        </form>
+        <!-- End Multi Columns Form -->
+      </div>
+    </div>
+
+	  <div class="card">
+            <div class="card-body" *ngIf="headerList?.length>0">
+          
+              <table class="table datatable dataTable-table">
+                <thead>
+                  <tr>
+                    <th scope="col"> Sr.No</th>
+                    <th scope="col">Master Menu Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Master Menu URL</th>
+                    <th scope="col">Menu</th>
+                    <th scope="col">Status</th>
+					          <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of headerList| paginate: config;let i = index">
+                    <th scope="row">{{ page == 1 ? i + 1 : (page - 1) * itemsPerPage + i + 1 }}</th>
+                    <td>{{user.name}}</td>
+                    <td>{{user.position}}</td>
+                    <td>{{user.url}}</td>
+                    <td><a class="view" [routerLink]="['/menu/menu-list',user.id]">view</a></td>
+                    <td>	<span class="{{user.status?'text-success':'text-danger'}}">
+
+                      {{user.status?'Active':'Inactive'}}
+                    </span></td>
+                    <td class="text-right">
+                      <div class="btn-group">
+                        <button
+                          class="act_button"
+                          type="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <a
+                            class="dropdown-item"
+                            (click)="onView(user)"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >View/Edit</a
+                          >
+                          <!-- <a
+                            class="dropdown-item"
+                            href="#"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >Edit</a
+                          > -->
+                          <a
+                            class="dropdown-item"
+                            (click)="onUpdateStatus(user)"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >{{user.status?'Deactivate':'Active'}}</a
+                          >
+                  <!-- <a class="dropdown-item" (click)="onDelete(user.id)" data-toggle="modal" data-target="#edit_user">Delete</a> -->
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+              <ng-container *ngIf="headerList?.length>0 && totalrecored">
+                <div class="col-12 text-end">
+                  <pagination-controls
+                    directionLinks:true
+                    showFirstLastButtons:true
+                    (pageChange)="pageChange($event)"
+                    class="my-pagination"
+                  >
+                  </pagination-controls>
+                </div>
+              </ng-container>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+
+
+
+
+
+  </main><!-- End #main -->
+

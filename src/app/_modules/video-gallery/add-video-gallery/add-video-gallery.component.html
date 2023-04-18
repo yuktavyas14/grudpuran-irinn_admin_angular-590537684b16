@@ -1,0 +1,128 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1> {{pageId?'Update':'Add'}}  Video Gallery</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" routerLink="/video-gallery">Video Gallery Management</li>
+        <li class="breadcrumb-item active">{{pageId?'Update':'Add'}} Video Gallery</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <form [formGroup]="addForm">
+            <div class="row">
+              <div class="col-md-6 my-1">
+                <div class="form-group">
+                  <label> Title:<span class="text-danger">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Title"
+                    formControlName="videoTitle"
+                  />
+                  <span
+                    *ngIf="
+                      addForm.controls['videoTitle'].invalid &&
+                      (addForm.controls['videoTitle'].dirty ||
+                        addForm.controls['videoTitle'].touched)
+                    "
+                    class=" "
+                  >
+                    <span
+                      class="errorMessage"
+                      *ngIf="addForm.controls['videoTitle'].errors?.['required'] || addForm.controls['videoTitle'].errors?.['whitespace']"
+                    >
+                      Title is Required
+                    </span>
+                    <span class="errorMessage" *ngIf="!addForm.controls['videoTitle'].errors?.['whitespace'] && addForm.controls['videoTitle'].errors?.['minlength']">
+                      Title must be at least 6 characters long.
+                      </span>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-6 my-1">
+                <div class="form-group">
+                  <label> Expiry Date:<span class="text-danger">*</span></label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    placeholder="Expiry Date"
+                    formControlName="expiryDate"
+                  />
+                  <span
+                    *ngIf="
+                      addForm.controls['expiryDate'].invalid &&
+                      (addForm.controls['expiryDate'].dirty ||
+                        addForm.controls['expiryDate'].touched)
+                    "
+                    class=" "
+                  >
+                    <span
+                      class="errorMessage"
+                      *ngIf="addForm.controls['expiryDate'].errors?.['required'] || addForm.controls['expiryDate'].errors?.['whitespace']"
+                    >
+                      Title is Required
+                    </span>
+                    
+                  </span>
+                </div>
+              </div>
+            
+              <div class="col-12 my-1">
+                <div class="form-group">
+                  <label>Embaded Iframe Url:<span class="text-danger">*</span></label>
+
+                  <!-- <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> -->
+                  <textarea name="" id=""   rows="5" formControlName="videoIframe" class="form-control"></textarea>
+                  <!-- <editor apiKey="9pnc6eyfmt6lpmz1urolef63hgzeyg9yaseaah2ygqh69bpm"  formControlName="videoIframe"
+                  [init]="{
+                    selector: 'textarea',
+                    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect',
+                    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                    tinycomments_mode: 'embedded',
+                    tinycomments_author: 'Author name',
+                    mergetags_list: [
+                      { value: 'First.Name', title: 'First Name' },
+                      { value: 'Email', title: 'Email' },
+                    ]
+                  }"
+                ></editor> -->
+                  <!-- <angular-editor
+                    id="editor"
+                    formControlName="videoIframe"
+                    [config]="editorConfig"
+                  ></angular-editor> -->
+                  <span
+                    *ngIf="
+                      addForm.controls['videoIframe'].invalid &&
+                      (addForm.controls['videoIframe'].dirty ||
+                        addForm.controls['videoIframe'].touched)
+                    "
+                    class=" "
+                  >
+                    <span
+                      class="errorMessage"
+                      *ngIf="addForm.controls['videoIframe'].errors?.['required'] || addForm.controls['videoIframe'].errors?.['whitespace']"
+                    >
+                      Content is Required
+                    </span>
+                    <span class="errorMessage" *ngIf="!addForm.controls['videoIframe'].errors?.['whitespace'] && addForm.controls['videoIframe'].errors?.['minlength']">
+                      Content must be at least 10 characters long.
+                      </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="text-left my-1">
+              <button type="reset" (click)="pageId ? onCancle() : onReset()" class="btn btn-secondary me-2">{{pageId ? 'Cancel' : 'Reset'}}</button>
+              <button type="submit" (click)="pageId ? onUpdate() : onSubmit()" class="btn btn-primary me-2">  {{pageId ? 'Update' : 'Submit'}}</button>
+            </div>
+            
+          
+          </form>
+        </div>
+      </div>
+</main>

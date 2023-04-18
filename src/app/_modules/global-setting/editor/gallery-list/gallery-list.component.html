@@ -1,0 +1,57 @@
+<main id="main" class="main">
+    <div class="row">
+          <div class="col pagetitle">
+            <h1>Editor Images List</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" routerLink="/global-setting/editor-gallery">Editor Images Management </li>
+                <li class="breadcrumb-item active">Editor Images List</li>
+              </ol>
+            </nav>
+          </div>
+
+              <div class="col-sm-4"><a routerLink="/global-setting/editor-gallery/add" type="submit" class="btn btn-primary bx-pull-right">+ Add </a></div>
+            </div>
+
+
+        <section class="section" *ngIf="galleryList?.length>0">
+          <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12" *ngFor="let gallery of galleryList| paginate: config;let i = index">
+                        <div class="card">
+                            <img src="{{gallery.imgUrl}}{{gallery.images}}" class="card-img-top" alt="images">
+                            <div class="card-body">
+                              <h5 class="card-title">{{gallery.imgUrl}}{{gallery.images}}</h5>
+                              <a href="javascript:void(0)" class="btn btn-primary" (click)="copyText1(gallery.imgUrl,gallery.images)">Copy to clipboard</a>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+
+
+
+
+            </div>
+            <ng-container *ngIf="galleryList?.length>0 && totalrecored">
+              <div class="col-12 text-end">
+                <pagination-controls
+                  directionLinks:true
+                  showFirstLastButtons:true
+                  (pageChange)="pageChange($event)"
+                  class="my-pagination"
+                >
+                </pagination-controls>
+              </div>
+            </ng-container>
+
+
+          </div>
+        </section>
+
+
+
+    </main>
+      <!-- /Page Content -->
+
+    <!-- /Page Wrapper -->

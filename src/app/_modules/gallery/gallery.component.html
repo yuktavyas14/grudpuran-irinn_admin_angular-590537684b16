@@ -1,0 +1,121 @@
+<main id="main" class="main">
+    <!-- Page Content -->
+    
+      
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="page-title">Gallery List</h3>
+            <ul class="breadcrumb">
+				<li class="breadcrumb-item"><a routerLink="/gallery">Gallery Management</a></li>
+				<li class="breadcrumb-item active">Gallery List </li>
+			</ul>
+          </div>
+		  <div class="col text-end">
+			<a href="javascript:void(0);" routerLink="/gallery/add" class="btn btn-primary ml-2 btntag">Add Gallery</a>
+		  </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+		
+
+			
+
+
+		<div class="card">
+			<div class="card-body" *ngIf="galleryList?.length>0">
+				<div class="row">
+		<div class="col-md-12">
+		
+			<div class="table-responsive">
+				<table class="table table-striped custom-table">
+					<thead>
+						<tr>
+							<th>S. No</th>
+							<th>Image Name</th>
+							
+							<th>Image</th>
+							<th>Status</th>
+							<th class="text-end">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let gallery of galleryList | paginate: config;let i= index">
+							<td>{{ page == 1 ? i + 1 : (page - 1) * itemsPerPage + i + 1 }}</td>
+							<td>{{gallery?.photoName}}</td>
+							<td>
+								<img src="{{gallery?.url}}{{gallery.photo}}" alt="{{gallery?.photoName}}" width="100px">
+							</td>
+							<td>	<span class="{{gallery.status?'text-success':'text-danger'}}">
+								{{gallery.status?'Active':'Inactive'}}
+							  </span></td>
+							  <td class="text-end">
+								<div class="btn-group">
+								  <button
+									class="act_button"
+									type="button"
+									data-bs-toggle="dropdown"
+									aria-expanded="false"
+								  >
+									<i class="bi bi-three-dots-vertical"></i>
+								  </button>
+								  <ul class="dropdown-menu">
+									<a
+									  class="dropdown-item"
+									  (click)="onView(gallery.id)"
+									  data-toggle="modal"
+									  data-target="#edit_user"
+									  >View/Edit</a
+									>
+									<!-- <a
+									  class="dropdown-item"
+									  href="#"
+									  data-toggle="modal"
+									  data-target="#edit_user"
+									  >Edit</a
+									> -->
+									<a
+									  class="dropdown-item"
+									  (click)="onUpdateStatus(gallery)"
+									  data-toggle="modal"
+									  data-target="#edit_user"
+									  >{{gallery.status?'Deactivate':'Active'}}</a
+									>
+									<!-- <a
+									class="dropdown-item"
+									(click)="onDelete(gallery.id)"
+									data-toggle="modal"
+									data-target="#edit_user"
+									>Delete</a
+								  > -->
+								  </ul>
+								</div>
+							  </td>
+
+						</tr>
+					</tbody>
+				  </table>
+				   <ng-container *ngIf="galleryList?.length>0 && totalrecored">
+					<div class="col-12 text-end">
+					  <pagination-controls
+						directionLinks:true
+						showFirstLastButtons:true
+						(pageChange)="pageChange($event)"
+						class="my-pagination"
+					  >
+					  </pagination-controls>
+					</div>
+				  </ng-container>
+			</div>
+
+		</div>
+	</div>
+				
+			</div>
+		</div>
+		
+		
+
+    </main>
+  <!-- /Page Wrapper -->

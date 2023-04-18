@@ -1,0 +1,57 @@
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1> {{languageId?'Update':'Add'}} Language </h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" routerLink="/global-setting/languages"> Language Management</li>
+          <li class="breadcrumb-item active"> {{languageId?'Update':'Add'}} Language </li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+	  
+	 
+	  <div class="card">
+            <div class="card-body">
+            
+
+              <!-- Vertical Form -->
+              <form class="row pt-4" [formGroup]="addForm">
+                <div class="col-md-6 mb-4">
+                  <label for="inputNanme4" class="form-label">Language Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" formControlName="language">
+                  <span
+                  *ngIf="addForm.controls['language'].invalid && (addForm.controls['language'].dirty || addForm.controls['language'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['language'].errors?.['required'] || addForm.controls.language.errors?.['whitespace']">
+                    Language is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="addForm.controls['language'].errors?.['minlength']">
+                    Language must be at least 3 characters long.
+                   </span>
+                  </span>
+                </div>
+			 
+				  {{languageId}}
+				  <div class="col-md-12 mb-4">
+                  <div class="text-left" *ngIf="!languageId">
+                  <button type="submit" class="btn btn-primary me-2" (click)="onSubmit()">Submit</button>
+                  <button type="reset" class="btn btn-secondary" (click)="onReset()">Reset</button>
+                </div>
+                <div class="text-left" *ngIf="languageId">
+                  <button type="submit" class="btn btn-primary me-2" (click)="onUpdate()">Update</button>
+                  <button type="reset" class="btn btn-secondary" (click)="onCancle()">cancel</button>
+                </div>
+                 
+          </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+	  
+	  
+
+    
+
+  </main><!-- End #main -->

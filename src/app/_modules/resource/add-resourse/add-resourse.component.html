@@ -1,0 +1,77 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>{{settingId ? 'Edit' : 'Add'}} Resource Partner</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" routerLink="/resourcepartner"> Resource Partner Management</li>
+          <li class="breadcrumb-item active">{{settingId ? 'Edit' : 'Add'}}  Resource Partner</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+    <div class="card">
+            <div class="card-body">
+
+
+              <!-- Vertical Form -->
+              <form [formGroup]="addForm" >
+                <div class="row">
+
+                    <div class="col-md-6 my-1">
+                        <div class="form-group">
+                          <label for="inputNanme4" class="form-label">Language  <span class="text-danger">*</span></label>
+                          <select class="form-select" name="" id="" formControlName="languageId" (change)="getDataById()">
+                           <option value="">Select Language</option>
+                           <ng-container *ngFor="let lang of languageList">
+                             <option [value]="lang.id">{{lang.language}}</option>
+                           </ng-container>
+                          </select>
+                          <span
+                          *ngIf="addForm.controls['languageId'].invalid && (addForm.controls['languageId'].dirty || addForm.controls['languageId'].touched)"
+                          class=" ">
+                          <span class="errorMessage" *ngIf="addForm.controls['languageId'].errors?.['required'] || addForm.controls.languageId.errors?.['whitespace']">
+                               Language is Required
+                          </span>
+
+                        </span>
+                        </div>
+                      </div>
+                    <div class="col-md-6 my-1">
+                        <div class="form-group">
+                          <label>Partner Name: <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" placeholder="Partner Name" formControlName="partnerName">
+                          <span
+                          *ngIf="addForm.controls['partnerName'].invalid && (addForm.controls['partnerName'].dirty || addForm.controls['partnerName'].touched)"
+                          class=" ">
+                          <span class="errorMessage" *ngIf="addForm.controls['partnerName'].errors?.['required'] || addForm.controls.partnerName.errors?.['whitespace']">
+                               Partner Name is Required
+                          </span>
+
+                        </span>
+                        </div>
+                      </div>
+               
+          
+
+
+                </div>
+                <div class="text-left" *ngIf="!settingId">
+                  <button type="button" class="btn btn-secondary me-2" (click)="onReset(1)">Reset</button>
+                  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+                </div>
+                <div class="text-left" *ngIf="settingId">
+                  <button type="button" class="btn btn-secondary me-2" (click)="onReset(2)">Cancel</button>
+                  <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+
+
+
+
+  </main><!-- End #main -->

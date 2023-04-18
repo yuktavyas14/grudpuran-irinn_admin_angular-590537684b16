@@ -1,0 +1,46 @@
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>{{logoAddrssId ? 'Edit' : 'Add'}} Editor Images</h1>
+      <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" routerLink="/global-setting/editor-gallery">Editor Images Management </li>
+
+          <li class="breadcrumb-item active">{{logoAddrssId ? 'Edit' : 'Add'}} Editor Images</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+ 
+      
+      <div class="card mb-4">
+        <div class="card-body">
+          <form [formGroup]="addForm" >
+            <div class="row">
+              
+              
+              
+              
+             
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label>Image: <span  class="text-danger">*</span></label>
+                  <input type="file" name="file" class="form-control" placeholder="Image"  (change)="onFileSelected($event)"  #fileUpload formControlName="file">
+                  
+                </div>
+              </div>
+            
+            </div>
+            <div class="text-left my-2" >
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(1)">Reset</button>
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            </div>
+             
+          </form>
+        </div>
+      </div>
+ 
+  
+    
+  </main>
+  <!-- /Page Wrapper --> 

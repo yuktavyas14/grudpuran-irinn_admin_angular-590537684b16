@@ -1,0 +1,224 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>{{headerId ? 'Edit' : 'Add'}} Email</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" routerLink="/menu/master-menu">Menu Management</li>
+        <li class="breadcrumb-item active">{{headerId ? 'Edit' : 'Add'}} Header</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+
+  <div class="card">
+          <div class="card-body">
+
+
+            <!-- Vertical Form -->
+            <form class="row pt-4" [formGroup]="addForm">
+              <!-- <div class="col-md-6 my-1">
+                <div class="form-group">
+                  <label for="inputNanme4" class="form-label">Language  <span class="text-danger">*</span></label>
+                  <select class="form-select" name="" id="" formControlName="languageId" >
+                   <option value="">Select Language</option>
+                   <ng-container *ngFor="let lang of languageList">
+                     <option [value]="lang.id">{{lang.language}}</option>
+                   </ng-container>
+                  </select>
+                  <span
+                  *ngIf="addForm.controls['languageId'].invalid && (addForm.controls['languageId'].dirty || addForm.controls['languageId'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['languageId'].errors?.['required'] || addForm.controls.languageId.errors?.['whitespace']">
+                       Language is Required
+                  </span>
+
+                </span>
+                </div>
+              </div> -->
+              <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Sent From</label>
+                <input type="text" class="form-control" formControlName="sentFrom" placeholder="email@gmail.com">
+                <span
+                *ngIf="addForm.controls['sentFrom'].invalid &&
+                  (addForm.controls['sentFrom'].dirty ||addForm.controls['sentFrom'].touched)"
+                class=" ">
+                <span class="errorMessage"
+                  *ngIf="addForm.controls['sentFrom'].errors?.['required'] || addForm.controls.sentFrom.errors?.['whitespace']"
+                >
+                Sent From is Required
+                </span>
+                <span class="errorMessage" *ngIf="addForm.controls['sentFrom'].errors?.['pattern']">
+                 Sent From must be like eg. email@gmail.com.
+                 </span>
+              </span>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Sent To</label>
+                <input type="text" class="form-control" formControlName="sentTo" placeholder="email@gmail.com">
+                <span
+                *ngIf="addForm.controls['sentTo'].invalid &&
+                  (addForm.controls['sentTo'].dirty ||addForm.controls['sentTo'].touched)"
+                class=" ">
+                <span class="errorMessage"
+                  *ngIf="addForm.controls['sentTo'].errors?.['required'] || addForm.controls.sentTo.errors?.['whitespace']"
+                >
+                Sent To is Required
+                </span>
+                <span class="errorMessage" *ngIf="addForm.controls['sentTo'].errors?.['pattern']">
+                 Sent To must be like eg. email@gmail.com.
+                 </span>
+              </span>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Subject</label>
+                <input type="text" class="form-control" formControlName="subject" placeholder="Subject">
+                <span
+                *ngIf="addForm.controls['subject'].invalid &&
+                  (addForm.controls['subject'].dirty ||addForm.controls['subject'].touched)"
+                class=" ">
+                <span class="errorMessage"
+                  *ngIf="addForm.controls['subject'].errors?.['required'] || addForm.controls.subject.errors?.['whitespace']"
+                >
+                Subject is Required
+                </span>
+                <span class="errorMessage" *ngIf="addForm.controls['subject'].errors?.['minlength']">
+                 Subject must be at least 3 characters long.
+                 </span>
+              </span>
+              </div>
+
+
+              <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Type</label>
+                <input type="text" class="form-control" formControlName="type" placeholder="Type">
+                <span
+                *ngIf="addForm.controls['type'].invalid &&
+                  (addForm.controls['type'].dirty ||addForm.controls['type'].touched)"
+                class=" ">
+                <span class="errorMessage"
+                  *ngIf="addForm.controls['type'].errors?.['required'] || addForm.controls.type.errors?.['whitespace']"
+                >
+                Type is Required
+                </span>
+                <span class="errorMessage" *ngIf="addForm.controls['type'].errors?.['minlength']">
+                 Type must be at least 3 characters long.
+                 </span>
+              </span>
+              </div>
+
+
+              <!-- <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Subject</label>
+                <input type="text" class="form-control" formControlName="headerPosition">
+                <span
+                *ngIf="addForm.controls['headerPosition'].invalid &&
+                  (addForm.controls['headerPosition'].dirty ||addForm.controls['headerPosition'].touched)"
+                class=" ">
+                <span class="errorMessage"
+                  *ngIf="addForm.controls['headerPosition'].errors?.['required'] || addForm.controls.headerPosition.errors?.['whitespace']"
+                >
+                Header Position is Required
+                </span>
+              </span>
+              </div> -->
+
+        <!-- <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Sub Header</label>
+                 <input type="text" class="form-control">
+              </div> -->
+        <!-- <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Content</label>
+                 <select class="form-select" name="" id="" formControlName="pgid">
+                  <option value="">Select</option>
+                  <ng-container *ngFor="let page of pageList">
+                    <option [value]="page.id">{{page.pageName}}</option>
+                  </ng-container>
+                 </select>
+                 <span
+                 *ngIf="addForm.controls['pgid'].invalid &&
+                   (addForm.controls['pgid'].dirty ||addForm.controls['pgid'].touched)"
+                 class=" ">
+                 <span class="errorMessage"
+                   *ngIf="addForm.controls['pgid'].errors?.['required']"
+                 >
+                 Page Id is Required
+                 </span>
+               </span>
+
+              </div> -->
+
+              <div class="col-12 my-2">
+                <div class="form-group">
+                  <label class="my-2"> Page Content:<span class="text-danger">*</span>
+                  </label>
+                  <label for="" class="ms-10 my-2 text-end" > &nbsp; &nbsp; &nbsp;
+                  <a href="javascript:void(0)" (click)="openurl()">Click here to Copy images Url</a>
+
+                  </label>
+
+                  <editor apiKey="7rzna9m07gni2ah5ymmiamj31jrwxxe9tkvtatergb0cb1yr"
+                  formControlName="pageContent"
+                  [init]="{
+                    selector: 'textarea',
+                    plugins:
+                      'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect',
+                    toolbar:
+                      'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                    tinycomments_mode: 'embedded',
+                    tinycomments_author: 'Author name',
+                    mergetags_list: [
+                      { value: 'First.Name', title: 'First Name' },
+                      { value: 'Email', title: 'Email' }
+                    ]
+                  }"
+                ></editor>
+                  <!-- <angular-editor
+                    id="editor"
+                    formControlName="pageContent"
+                    [config]="editorConfig"
+                  ></angular-editor> -->
+                  <span
+                    *ngIf="
+                      addForm.controls['pageContent'].invalid &&
+                      (addForm.controls['pageContent'].dirty ||
+                        addForm.controls['pageContent'].touched)
+                    "
+                    class=" "
+                  >
+                    <span
+                      class="errorMessage"
+                      *ngIf="addForm.controls['pageContent'].errors?.['required'] || addForm.controls['pageContent'].errors?.['whitespace']"
+                    >
+                      Content is Required
+                    </span>
+                    <span class="errorMessage" *ngIf="!addForm.controls['pageContent'].errors?.['whitespace'] && addForm.controls['pageContent'].errors?.['minlength']">
+                      Node must be at least 10 characters long.
+                      </span>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                <div class="text-left">
+                <button type="submit" (click)="headerId ? onUpdate() : onSubmit()" class="btn btn-primary me-2">+ {{headerId ? 'Update' : 'Add'}}</button>
+                <button type="reset" (click)="onReset()" class="btn btn-secondary">Reset</button>
+              </div>
+
+              </div>
+
+
+
+
+
+            </form><!-- Vertical Form -->
+
+          </div>
+        </div>
+
+
+
+
+
+</main><!-- End #main -->

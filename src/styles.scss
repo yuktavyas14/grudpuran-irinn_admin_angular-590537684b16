@@ -1,0 +1,38 @@
+a{
+    cursor: pointer;
+} 
+.header-align-right .mat-sort-header-container {
+    justify-content: end;
+}
+.table td, .table th {
+    border-bottom: 0px !important;
+}
+.btntag {
+    display: inline-flex;
+    align-items: center;
+}
+.errorMessage{
+    color: red;
+}
+.page-content-view img {
+    max-width: 99%;
+}
+i.la.la-arrow-left{
+    cursor: pointer;
+}
+.invalid-feedback {
+    display: block !important;
+    
+}
+i.bi.bi-arrow-left{
+    cursor: pointer;
+}
+.ngx-pagination .current {
+    padding: .1875rem .625rem;
+    background: #312483 !important;
+    color: #fff;
+    cursor: default;
+}
+a.view:hover {
+    text-decoration: underline;
+}

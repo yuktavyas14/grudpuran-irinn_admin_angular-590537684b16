@@ -1,0 +1,302 @@
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" routerLinkActive="active" routerLink="/dashboard">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#role-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span> Role Management</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="role-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a  routerLink="/roles/add"><i class="bi bi-circle"></i><span>Add Role</span></a>
+          </li>
+          <li>
+            <a routerLink="/roles"><i class="bi bi-circle"></i><span>Role List</span></a>
+          </li>
+
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#user-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-person"></i><span> User Management</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="user-nav" class="nav-content collapse "  data-bs-parent="#sidebar-nav">
+          <!-- <li>
+            <a routerLink="/user/add"><i class="bi bi-circle"></i><span> Add User</span></a>
+          </li> -->
+          <li>
+            <a routerLink="/user" ><i class="bi bi-circle"></i><span> User List</span></a>
+          </li>
+          <!-- <li>
+            <a routerLink="/user/member-list"><i class="bi bi-circle"></i><span>Member List</span></a>
+          </li> -->
+
+        </ul>
+      </li>
+		<!-- End Forms Nav -->
+
+      <li class="nav-item" routerLink="/banner">
+        <a class="nav-link collapsed" routerLinkActive="active">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Banner Management</span>
+          <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
+        </a>
+
+      </li>
+
+      <li class="nav-item" routerLink="/email">
+        <a class="nav-link collapsed" routerLinkActive="active">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Email Management</span>
+          <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
+        </a>
+
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#calculator-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>IPV6 and IPV4</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="calculator-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a routerLink="/feescalculate/fees">
+              <i class="bi bi-circle"></i><span>Fee Calculator </span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/feescalculate/fees-Subnet">
+              <i class="bi bi-circle"></i><span>Subnet Calculator </span>
+            </a>
+          </li>
+         
+        </ul>
+      </li>
+
+      <li class="nav-item" routerLink="/feedback">
+        <a class="nav-link collapsed" routerLinkActive="active">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Feedback Management</span>
+          <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
+        </a>
+
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#header-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>Menu Management</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="header-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a routerLink="/menu/master-menu">
+              <i class="bi bi-circle"></i><span>Header </span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/menu/footer">
+              <i class="bi bi-circle"></i><span>Footer </span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/quick-links">
+              <i class="bi bi-circle"></i><span>Quick Links List</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed"  data-bs-target="#globalsetting-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-person"></i><span> Global Setting</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="globalsetting-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <!-- <li>
+            <a routerLink="/user/add"><i class="bi bi-circle"></i><span> Add User</span></a>
+          </li> -->
+          <li>
+            <a routerLink="/global-setting/banner"><i class="bi bi-circle"></i><span> Home Banner Services</span></a>
+          </li>
+          <li>
+            <a routerLink="/global-setting/languages"><i class="bi bi-circle"></i><span> Languages</span></a>
+          </li>
+          <li>
+            <a routerLink="/global-setting/data"><i class="bi bi-circle"></i><span> Global Data List</span></a>
+          </li>
+          <li>
+            <a routerLink="/global-setting/wwh"><i class="bi bi-circle"></i><span> What We Have List</span></a>
+          </li>
+          <li>
+            <a routerLink="/global-setting/why-ipv6"><i class="bi bi-circle"></i><span> Why IPV6-V4</span></a>
+          </li>
+          <li>
+            <a routerLink="/global-setting/editor-gallery"><i class="bi bi-circle"></i><span> Editor Gallery</span></a>
+          </li>
+
+          <li>
+            <a routerLink="/logo-address">
+              <i class="bi bi-circle"></i><span>Logo Setting</span>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#page-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>Page Management</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="page-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a routerLink="/providers">
+              <i class="bi bi-circle"></i><span>Providers List</span>
+            </a>
+          </li>
+          <!-- <li>
+            <a routerLink="/tne">
+              <i class="bi bi-circle"></i><span>Training & Education List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/itc">
+              <i class="bi bi-circle"></i><span>ITC List</span>
+            </a>
+          </li> -->
+             <li>
+            <a routerLink="/faq">
+              <i class="bi bi-circle"></i><span>FAQ List</span>
+            </a>
+          </li>
+            <li>
+            <a routerLink="/video-gallery">
+              <i class="bi bi-circle"></i><span>Video-gallery List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/pages">
+              <i class="bi bi-circle"></i><span>Pages List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/gallery">
+              <i class="bi bi-circle"></i><span>Gallery List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/news">
+              <i class="bi bi-circle"></i><span>News List</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/services">
+              <i class="bi bi-circle"></i><span>Services List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/tender">
+              <i class="bi bi-circle"></i><span>Tender List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/resourcepartner">
+              <i class="bi bi-circle"></i><span>Resource Partner</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/contact-us"><i class="bi bi-circle"></i><span> Contact Us Page</span></a>
+          </li>
+          <!-- <li>
+            <a routerLink="/contact">
+              <i class="bi bi-circle"></i><span>Contact List</span>
+            </a>
+          </li> -->
+          <!-- <li>
+            <a routerLink="/connectmember">
+              <i class="bi bi-circle"></i><span>Connect Member List</span>
+            </a>
+          </li> -->
+          <!-- <li>
+            <a routerLink="/documents">
+              <i class="bi bi-circle"></i><span>Documents  List</span>
+            </a>
+          </li> -->
+
+          <!-- <li>
+            <a routerLink="/facility-member">
+              <i class="bi bi-circle"></i><span>Facility List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/gallery">
+              <i class="bi bi-circle"></i><span>Gallery List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/links">
+              <i class="bi bi-circle"></i><span>Important Links List</span>
+            </a>
+          </li> -->
+          <!-- <li>
+            <a routerLink="/ispmember">
+              <i class="bi bi-circle"></i><span>ISP Member List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/new-isp">
+              <i class="bi bi-circle"></i><span>New ISP List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/isp-acquisition-partner">
+              <i class="bi bi-circle"></i><span>ISP Acquisition Partner</span>
+            </a>
+          </li> -->
+          <!-- <li>
+            <a routerLink="/judgement-order">
+              <i class="bi bi-circle"></i><span>Judgement Orders List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/latestupdate">
+              <i class="bi bi-circle"></i><span>Latest Update List</span>
+            </a>
+          </li>-->
+
+          <!-- <li>
+            <a routerLink="/natwork-master">
+              <i class="bi bi-circle"></i><span>Network Master List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/other-activity">
+              <i class="bi bi-circle"></i><span>Other Activity List</span>
+            </a>
+          </li> -->
+
+          <!--
+          <li>
+            <a routerLink="/vacancies">
+              <i class="bi bi-circle"></i><span>Vacancies List</span>
+            </a>
+          </li>
+          -->
+
+        </ul>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed"(click)="onLogout()"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a>
+      </li><!-- End Profile Page Nav -->
+
+
+
+
+    </ul>
+
+  </aside>
+  <!-- End Sidebar-->

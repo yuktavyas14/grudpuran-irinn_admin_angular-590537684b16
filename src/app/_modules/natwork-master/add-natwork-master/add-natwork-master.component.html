@@ -1,0 +1,248 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+       <div class="page-header">
+          <div class="row align-items-center">
+             <div class="col">
+                <h3 class="page-title">{{ serviceId ? " Update " : " Add " }} Network Master</h3>
+                <ul class="breadcrumb">
+                   <li class="breadcrumb-item">
+                      <a routerLink="/natwork-master">Network Master Management</a>
+                   </li>
+                   <li class="breadcrumb-item active">
+                      {{ serviceId ? " Update " : " Add " }} Network Master
+                   </li>
+                </ul>
+             </div>
+          </div>
+       </div>
+       <div class="card mb-4">
+          <div class="card-body">
+             <form [formGroup]="addForm">
+                <div class="row">
+                   
+
+
+
+                   <div class="col-md-6">
+                    <div class="form-group">
+                       <label> Company Name:<span class="text-danger">*</span></label>
+                       <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Company Name"
+                          formControlName="companyName"
+                          />
+                       <span
+                          *ngIf="
+                          addForm.controls['companyName'].invalid &&
+                          (addForm.controls['companyName'].dirty ||
+                          addForm.controls['companyName'].touched)
+                          "
+                          class=" "
+                          >
+                       <span
+                          class="errorMessage"
+                          *ngIf="addForm.controls['companyName'].errors?.['required'] || addForm.controls['companyName'].errors?.['whitespace']"
+                          >
+                          Company Name is Required
+                       </span>
+                       <span class="errorMessage" *ngIf="!addForm.controls['companyName'].errors?.['whitespace'] && addForm.controls['companyName'].errors?.['minlength']">
+                        Name must be at least 3 characters long.
+                        </span>
+                       </span>
+                    </div>
+                 </div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                       <label> Company Address:<span class="text-danger">*</span></label>
+                       <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Company Address"
+                          formControlName="companyAddress"
+                          />
+                       <span
+                          *ngIf="
+                          addForm.controls['companyAddress'].invalid &&
+                          (addForm.controls['companyAddress'].dirty ||
+                          addForm.controls['companyAddress'].touched)
+                          "
+                          class=" "
+                          >
+                       <span
+                          class="errorMessage"
+                          *ngIf="addForm.controls['companyAddress'].errors?.['required'] || addForm.controls['companyAddress'].errors?.['whitespace']"
+                          >
+                          Company Address is Required
+                       </span>
+                       <span class="errorMessage" *ngIf="!addForm.controls['companyAddress'].errors?.['whitespace'] && addForm.controls['companyAddress'].errors?.['minlength']">
+                        Node must be at least 10 characters long.
+                        </span>
+                       </span>
+                    </div>
+                 </div>
+                 
+                 <div class="col-md-6">
+                    <div class="form-group">
+                       <label> Phone Number:<span class="text-danger">*</span></label>
+                       <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Contatct Number"
+                          formControlName="phoneNumber"
+                          appNumberOnly
+                          />
+                       <span
+                          *ngIf="
+                          addForm.controls['phoneNumber'].invalid &&
+                          (addForm.controls['phoneNumber'].dirty ||
+                          addForm.controls['phoneNumber'].touched)
+                          "
+                          class=" "
+                          >
+                       <span
+                          class="errorMessage"
+                          *ngIf="addForm.controls['phoneNumber'].errors?.['required'] || addForm.controls['phoneNumber'].errors?.['whitespace']"
+                          >
+                          Phone Number is Required
+                       </span>
+                       <span class="errorMessage" *ngIf="!addForm.controls['phoneNumber'].errors?.['whitespace'] && addForm.controls['phoneNumber'].errors?.['minlength']">
+                        Node must be at least 7 digits long.
+                        </span>
+                       </span>
+                    </div>
+                 </div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                       <label> Company City:</label>
+                       <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Manager Email"
+                          formControlName="companyCity"
+                          />
+                      
+                    </div>
+                 </div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                       <label> As Number:</label>
+                       <input
+                          type="text"
+                          class="form-control"
+                          placeholder="As Number"
+                          formControlName="asNumber"
+                          />
+                       
+                    </div>
+                 </div>
+             
+               
+              <!-- ------------------- -->
+
+              <div class="col-md-6">
+                <div class="form-group">
+                   <label> Company Website Url:</label>
+                   <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Company Website Url"
+                      formControlName="companyWebsiteUrl"
+                      />
+                 
+                </div>
+             </div>
+             <div class="col-md-6">
+                <div class="form-group">
+                   <label> Fax Number:</label>
+                   <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Fax Number"
+                      formControlName="faxNumber"
+                      />
+                 
+                </div>
+             </div>
+             <div class="col-md-6">
+                <div class="form-group">
+                   <label> IPV4:</label>
+                   <input
+                      type="text"
+                      class="form-control"
+                      placeholder="ipv4"
+                      formControlName="ipv4"
+                      />
+                 
+                </div>
+             </div>
+             <div class="col-md-6">
+                <div class="form-group">
+                   <label> IPV6:</label>
+                   <input
+                      type="text"
+                      class="form-control"
+                      placeholder="ipv6"
+                      formControlName="ipv6"
+                      />
+                 
+                </div>
+             </div>
+         
+             
+              
+             
+             
+                 
+
+<!-- ---------------- -->
+
+
+                    
+                   <div class="col-md-6">
+                      <div class="form-group">
+                         <label>Image:</label>
+                         <input
+                         type="file" name="file"
+                         class="form-control"
+                         placeholder="Image"
+                         (change)="onFileSelected($event)"
+                         #fileUpload,
+                         formControlName="file"
+                         />
+                         <span
+                            *ngIf="
+                            !serviceId &&
+                            addForm.controls['file'].invalid &&
+                            (addForm.controls['file'].dirty ||
+                            addForm.controls['file'].touched)
+                            "
+                            class=" "
+                            >
+                         <span
+                            class="errorMessage"
+                            *ngIf="addForm.controls['file'].errors?.['required']"
+                            >
+                         Image is Required
+                         </span>
+                         </span>
+                      </div>
+                   </div>
+                </div>
+                <div class="text-left" *ngIf="!serviceId">
+                   <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+                   <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+                   Submit
+                   </button>
+                </div>
+                <div class="text-left" *ngIf="serviceId">
+                   <button type="button" class="btn btn-secondary me-2" (click)="onCancle()">Cancel</button>
+                   <button type="submit" class="btn btn-primary" (click)="onUpdate()">
+                   Update
+                   </button>
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+ </div>

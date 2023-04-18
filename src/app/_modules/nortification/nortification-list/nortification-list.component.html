@@ -1,0 +1,71 @@
+<main id="main" class="main">
+    <div class="row">
+          <div class="col pagetitle">
+            <h1>Feedback & Complain List</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" routerLink="/nortification">Feedback & Complain Management</li>
+                <li class="breadcrumb-item active">Feedback & Complain List</li>
+              </ol>
+            </nav>
+          </div>
+  
+              <!-- <div class="col-sm-4"><a routerLink="/nortification/add" type="submit" class="btn btn-primary bx-pull-right">+ Add Providers</a></div> -->
+            </div>
+    
+    
+        <section class="section">
+          <div class="row">
+            <div class="col-lg-12">
+    
+              <div class="card">
+                <div class="card-body">
+                  
+                    <table class="table datatable dataTable-table">
+                    <thead>
+                      <tr>
+                        <th scope="col"> Sr.No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Created </th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let faq of faqList;let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>
+                            <a href="javascript:void(0)" (click)="onUpdateFbNCpStatusById(faq)"> {{faq.name}}</a>
+                        </td>
+                        <td>{{faq.description}}</td>
+                        <td>{{faq.type}}</td>
+                        <td>{{faq.mobNo}}</td>
+                        <td>{{faq.createdAt}}</td>
+                        <td>	<span class="{{faq.status?'text-success':'text-danger'}}">
+                          {{faq.status?'Active':'Inactive'}}
+                        </span></td>
+                       
+                      </tr>
+    
+    
+                    </tbody>
+                  </table>
+                  <!-- End Default Table Example -->
+                </div>
+              </div>
+    
+    
+            </div>
+    
+    
+          </div>
+        </section>
+      
+      
+    
+    </main>
+      <!-- /Page Content --> 
+     
+    <!-- /Page Wrapper -->

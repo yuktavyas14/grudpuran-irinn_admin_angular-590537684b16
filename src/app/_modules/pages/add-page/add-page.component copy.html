@@ -1,0 +1,149 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <!-- Page Content -->
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">{{ pageId ? "Update " : "Add " }} Page</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/pages">Page Management</a>
+            </li>
+            <li class="breadcrumb-item active">
+              {{ pageId ? "Update " : "Add " }} Page
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <form [formGroup]="addForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Name: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Page Name"
+                  formControlName="pageName"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['pageName'].invalid &&
+                    (addForm.controls['pageName'].dirty ||
+                      addForm.controls['pageName'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['pageName'].errors?.['required'] || addForm.controls['pageName'].errors?.['whitespace']"
+                  >
+                    Name is Required
+                  </span>
+
+                  <span class="errorMessage" *ngIf="!addForm.controls['pageName'].errors?.['whitespace'] && addForm.controls['pageName'].errors?.['minlength']">
+                    Node must be at least 3 characters long.
+                    </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Url:<span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Url"
+                  formControlName="pageUrl"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['pageUrl'].invalid &&
+                    (addForm.controls['pageUrl'].dirty ||
+                      addForm.controls['pageUrl'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['pageUrl'].errors?.['required'] || addForm.controls['pageName'].errors?.['whitespace']"
+                  >
+                    URL is Required
+                  </span>
+
+                </span>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label> Page Content:<span class="text-danger">*</span></label>
+
+                <!-- <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> -->
+                <editor apiKey="7rzna9m07gni2ah5ymmiamj31jrwxxe9tkvtatergb0cb1yr"
+                formControlName="pageContent"
+                [init]="{
+                  selector: 'textarea',
+                  plugins:
+                    'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect',
+                  toolbar:
+                    'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                  tinycomments_mode: 'embedded',
+                  tinycomments_author: 'Author name',
+                  mergetags_list: [
+                    { value: 'First.Name', title: 'First Name' },
+                    { value: 'Email', title: 'Email' }
+                  ]
+                }"
+              ></editor>
+                <!-- <angular-editor
+                  id="editor"
+                  formControlName="pageContent"
+                  [config]="editorConfig"
+                ></angular-editor> -->
+                <span
+                  *ngIf="
+                    addForm.controls['pageContent'].invalid &&
+                    (addForm.controls['pageContent'].dirty ||
+                      addForm.controls['pageContent'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['pageContent'].errors?.['required'] || addForm.controls['pageContent'].errors?.['whitespace']"
+                  >
+                    Content is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['pageContent'].errors?.['whitespace'] && addForm.controls['pageContent'].errors?.['minlength']">
+                    Node must be at least 10 characters long.
+                    </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="text-left" *ngIf="!pageId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+          <div class="text-left" *ngIf="pageId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onCancle()">Cancel</button>
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- /Page Content -->
+</div>
+<!-- /Page Wrapper -->

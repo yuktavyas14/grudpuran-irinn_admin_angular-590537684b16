@@ -1,0 +1,223 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <!-- Page Content -->
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">{{ serviceId ? " Update " : " Add " }} ISP</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/ispmember">ISP Management</a>
+            </li>
+            <li class="breadcrumb-item active">
+              {{ serviceId ? " Update " : " Add " }} ISP
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <form [formGroup]="addForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Member Name: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ISP Member Name"
+                  formControlName="ispMemberName"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['ispMemberName'].invalid &&
+                    (addForm.controls['ispMemberName'].dirty ||
+                      addForm.controls['ispMemberName'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['ispMemberName'].errors?.['required'] || addForm.controls['ispMemberName'].errors?.['whitespace']"
+                  >
+                    Name is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['ispMemberName'].errors?.['whitespace'] && addForm.controls['ispMemberName'].errors?.['minlength']">
+                    Name must be at least 3 characters long.
+                    </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Member Contact: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ISP Member Contact"
+                  formControlName="ispMemberContact"
+                  appNumberOnly
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['ispMemberContact'].invalid &&
+                    (addForm.controls['ispMemberContact'].dirty ||
+                      addForm.controls['ispMemberContact'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['ispMemberContact'].errors?.['required'] || addForm.controls['ispMemberContact'].errors?.['whitespace']"
+                  >
+                    Contact is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['ispMemberContact'].errors?.['whitespace'] && addForm.controls['ispMemberContact'].errors?.['minlength']">
+                    Contact must be at least 7 digits long.
+                    </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Member Address: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ISP Member Address"
+                  formControlName="ispMemberAddress"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['ispMemberAddress'].invalid &&
+                    (addForm.controls['ispMemberAddress'].dirty ||
+                      addForm.controls['ispMemberAddress'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['ispMemberAddress'].errors?.['required'] || addForm.controls['ispMemberAddress'].errors?.['whitespace']"
+                  >
+                    Address is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['ispMemberAddress'].errors?.['whitespace'] && addForm.controls['ispMemberAddress'].errors?.['minlength']">
+                    Address must be at least 6 characters long.
+                    </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Member Url: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ISP Member Url"
+                  formControlName="ispMemberurl"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['ispMemberurl'].invalid &&
+                    (addForm.controls['ispMemberurl'].dirty ||
+                      addForm.controls['ispMemberurl'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['ispMemberurl'].errors?.['required'] || addForm.controls['ispMemberurl'].errors?.['whitespace']"
+                  >
+                    Url is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['ispMemberurl'].errors?.['whitespace'] && addForm.controls['ispMemberurl'].errors?.['minlength']">
+                    Url must be at least 5 characters long.
+                    </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Site Url: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ISP Site Url"
+                  formControlName="ispSiteUlr"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['ispSiteUlr'].invalid &&
+                    (addForm.controls['ispSiteUlr'].dirty ||
+                      addForm.controls['ispSiteUlr'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['ispSiteUlr'].errors?.['required'] || addForm.controls['ispSiteUlr'].errors?.['whitespace']"
+                  >
+                    Site Url is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['ispSiteUlr'].errors?.['whitespace'] && addForm.controls['ispSiteUlr'].errors?.['minlength']">
+                    Node must be at least 5 characters long.
+                    </span>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Image: <span *ngIf="
+                  !serviceId" class="text-danger">*</span></label>
+                <input
+                  type="file"
+                  name="file"
+                  class="form-control"
+                  placeholder="Image"
+                  (change)="onFileSelected($event)"
+                  #fileUpload
+                />
+                <span
+                  *ngIf="
+                    !serviceId &&
+                    addForm.controls['file'].invalid &&
+                      (addForm.controls['file'].dirty ||
+                        addForm.controls['file'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['file'].errors?.['required']"
+                  >
+                    Image is Required
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="text-left" *ngIf="!serviceId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+          <div class="text-left" *ngIf="serviceId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onCancle()">Cancel</button>
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- /Page Content -->
+</div>
+<!-- /Page Wrapper -->

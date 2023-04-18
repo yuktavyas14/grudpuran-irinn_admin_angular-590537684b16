@@ -1,0 +1,136 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <!-- Page Content -->
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">
+            {{ facilityId ? " Update " : " Add " }} Facility Member
+          </h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/facility-member">Facility Member Management</a>
+            </li>
+            <li class="breadcrumb-item active">
+              {{ facilityId ? " Update " : " Add " }} Facility Member
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <form [formGroup]="addForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Node: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Node"
+                  formControlName="node"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['node'].invalid &&
+                    (addForm.controls['node'].dirty ||
+                      addForm.controls['node'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['node'].errors?.['required'] || addForm.controls['node'].errors?.['whitespace']"
+                  >
+                    Node is Required
+                  </span>
+                </span>
+                <span class="errorMessage" *ngIf="!addForm.controls['node'].errors?.['whitespace'] && addForm.controls['node'].errors?.['minlength']">
+                  Node must be at least 2 characters long.
+                 </span>
+                 
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Ip Version: <span  class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ip Version"
+                  formControlName="ipVersion"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['ipVersion'].invalid &&
+                    (addForm.controls['ipVersion'].dirty ||
+                      addForm.controls['ipVersion'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['ipVersion'].errors?.['required'] ||  addForm.controls['ipVersion'].errors?.['whitespace']"
+                  >
+                    Ip Version is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['ipVersion'].errors?.['whitespace'] && addForm.controls['ipVersion'].errors?.['minlength']">
+                    Node must be at least 3 characters long.
+                   </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Query Type: <span  class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Query Type"
+                  formControlName="typeOfQuery"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['typeOfQuery'].invalid &&
+                    (addForm.controls['typeOfQuery'].dirty ||
+                      addForm.controls['typeOfQuery'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['typeOfQuery'].errors?.['required'] || addForm.controls['typeOfQuery'].errors?.['whitespace']"
+                  >
+                    Query Type is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['typeOfQuery'].errors?.['whitespace'] && addForm.controls['typeOfQuery'].errors?.['minlength']">
+                    Node must be at least 2 characters long.
+                   </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="text-left" *ngIf="!facilityId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+          <div class="text-left" *ngIf="facilityId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onCancle()">Cancel</button>
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- /Page Content -->
+</div>
+<!-- /Page Wrapper -->

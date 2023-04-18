@@ -1,0 +1,130 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Add ITC</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">ITC Management</li>
+          <li class="breadcrumb-item active">Add ITC</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+  
+  
+    <div class="card">
+            <div class="card-body">
+  
+  
+              <!-- Vertical Form -->
+              <form [formGroup]="addForm" >
+                <div class="row">
+
+                    <div class="col-md-6 my-1">
+                        <div class="form-group">
+                          <label for="inputNanme4" class="form-label">Language  <span class="text-danger">*</span></label>
+                          <select class="form-select" name="" id="" formControlName="languageId" (change)="getDataById()">
+                           <option value="">Select Language</option>
+                           <ng-container *ngFor="let lang of languageList">
+                             <option [value]="lang.id">{{lang.language}}</option>
+                           </ng-container>
+                          </select>
+                          <span
+                          *ngIf="addForm.controls['languageId'].invalid && (addForm.controls['languageId'].dirty || addForm.controls['languageId'].touched)"
+                          class=" ">
+                          <span class="errorMessage" *ngIf="addForm.controls['languageId'].errors?.['required'] || addForm.controls.languageId.errors?.['whitespace']">
+                               Language is Required
+                          </span>
+                         
+                        </span>
+                        </div>
+                      </div>
+                    <div class="col-md-6 my-1">
+                        <div class="form-group">
+                          <label>Title: <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" placeholder="Title" formControlName="title">
+                          <span
+                          *ngIf="addForm.controls['title'].invalid && (addForm.controls['title'].dirty || addForm.controls['title'].touched)"
+                          class=" ">
+                          <span class="errorMessage" *ngIf="addForm.controls['title'].errors?.['required'] || addForm.controls.title.errors?.['whitespace']">
+                               title is Required
+                          </span>
+                         
+                        </span>
+                        </div>
+                      </div>
+                  <div class="col-md-6 my-1">
+                    <div class="form-group">
+                      <label>Heading: <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Heading" formControlName="heading">
+                      <span
+                      *ngIf="addForm.controls['heading'].invalid && (addForm.controls['heading'].dirty || addForm.controls['heading'].touched)"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['heading'].errors?.['required'] || addForm.controls.heading.errors?.['whitespace']">
+                           Heading is Required
+                      </span>
+                      
+                    </span>
+                    </div>
+                  </div>
+                 
+                   
+                  <div class="col-md-6 my-1">
+                    <div class="form-group">
+                      <label>Expiry Date: <span class="text-danger">*</span></label>
+                      <input type="date" class="form-control" placeholder="Read More" formControlName="expiryDate">
+                      <span
+                      *ngIf="addForm.controls['expiryDate'].invalid && (addForm.controls['expiryDate'].dirty || addForm.controls['expiryDate'].touched)"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['expiryDate'].errors?.['required'] || addForm.controls.expiryDate.errors?.['whitespace']">
+                           expiryDate is Required
+                      </span>
+                      
+                    </span>
+                    </div>
+                  </div>
+                   
+                  <div class="col-md-6  my-1">
+                    <div class="form-group">
+                      <label>Image:<span class="text-danger"  *ngIf="!tneId">*</span></label>
+                      <input type="file" name="file" class="form-control" placeholder="Image"  (change)="onFileSelected($event)"  #fileUpload>
+                      <!-- <span
+                      *ngIf="!tneId && (addForm.controls['file'].invalid && (addForm.controls['file'].dirty || addForm.controls['file'].touched))"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['file'].errors?.['required']">
+                           Image is Required
+                      </span>
+                    </span> -->
+  
+                    </div>
+                  </div>
+                  <div class="col-md-12  my-1">
+                    <div class="form-group">
+                      <label>Description:</label>
+                      <textarea name="" rows="5" class="form-control" placeholder="description" maxlength="500"  formControlName="description"></textarea>
+                      <span class="text-muted">Max 500 characters</span>
+                    </div>
+                  </div>
+  
+  
+  
+                </div>
+                 
+                    <div class="text-left">
+                    <button type="reset" (click)="tneId ? onReset(2) : onReset(1)" class="btn btn-secondary me-2">Reset</button>
+
+                    <button type="submit" (click)="tneId ? onUpdate() : onSubmit()" class="btn btn-primary me-2">  {{tneId ? 'Update' : 'Submit'}}</button>
+              
+          
+                  </div>
+                 
+              </form>
+  
+            </div>
+          </div>
+  
+  
+  
+  
+  
+  </main><!-- End #main -->
+  

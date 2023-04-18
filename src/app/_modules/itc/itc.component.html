@@ -1,0 +1,107 @@
+<main id="main" class="main">
+    <div class="row">
+          <div class="col pagetitle">
+            <h1>ITC  List</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" routerLink="/itc">ITC  Management</li>
+                <li class="breadcrumb-item active">ITC  List</li>
+              </ol>
+            </nav>
+          </div>
+  
+              <div class="col-sm-4"><a routerLink="/itc/add" type="submit" class="btn btn-primary bx-pull-right">+ Add ITC</a></div>
+            </div>
+    
+    
+        <section class="section">
+          <div class="row">
+            <div class="col-lg-12">
+    
+              <div class="card">
+                <div class="card-body">
+                  
+                    <table class="table datatable dataTable-table">
+                    <thead>
+                      <tr>
+                        <th scope="col"> Sr.No</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Heading</th>
+                        <th scope="col">Expiry Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let faq of faqList;let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{faq.title}}</td>
+                        <td>{{faq.heading}}</td>
+                        <td>{{faq.expiryDate}}</td>
+                        <td>	<span class="{{faq.status?'text-success':'text-danger'}}">
+                          {{faq.status?'Active':'Inactive'}}
+                        </span></td>
+                        <td class="text-right">
+                          <div class="btn-group">
+                            <button
+                              class="act_button"
+                              type="button"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <a
+                                class="dropdown-item"
+                                (click)="onView(faq.id)"
+                                data-toggle="modal"
+                                data-target="#edit_user"
+                                >View/Edit</a
+                              >
+                              <!-- <a
+                                class="dropdown-item"
+                                href="#"
+                                data-toggle="modal"
+                                data-target="#edit_user"
+                                >Edit</a
+                              > -->
+                              <a
+                                class="dropdown-item"
+                                (click)="onUpdateStatus(faq)"
+                                data-toggle="modal"
+                                data-target="#edit_user"
+                                >{{faq.status?'Deactivate':'Active'}}</a
+                              >
+                              <!-- <a
+                              class="dropdown-item"
+                              (click)="onDelete(faq.id)"
+                              data-toggle="modal"
+                              data-target="#edit_user"
+                              >Delete</a
+                            > -->
+                            </ul>
+                          </div>
+                        </td>
+                      </tr>
+    
+    
+                    </tbody>
+                  </table>
+                  <!-- End Default Table Example -->
+                </div>
+              </div>
+    
+    
+            </div>
+    
+    
+          </div>
+        </section>
+      
+      
+    
+    </main>
+      <!-- /Page Content --> 
+     
+    <!-- /Page Wrapper -->

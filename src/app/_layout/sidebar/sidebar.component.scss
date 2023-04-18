@@ -1,0 +1,42 @@
+.sidebar-menu {
+    height: calc(100vh - 60px);
+    overflow-y: auto;	
+}
+
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #b1b1b1 #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #b1b1b1;
+    border-radius: 10px;
+    border: 0px solid #ffffff;
+  }
+  .sidebar-menu > ul > li > a {
+    color: #fff !important;
+    cursor: pointer;
+}
+.sidebar-menu ul ul a {
+    display: block;
+    font-size: 14px;
+    padding: 9px 10px 9px 50px;
+    position: relative;
+    color: #fff !important;
+    cursor: pointer !important;
+
+}
+  
+.sidebar-nav .nav-link.active {
+  color: #4154f1;
+  background: #f6f9ff;
+}

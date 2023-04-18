@@ -1,0 +1,75 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <!-- Page Content -->
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">{{ ispId ? " Update " : " Add " }} ISP</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/ispmember">ISP Management</a>
+            </li>
+            <li class="breadcrumb-item active">
+              {{ ispId ? " Update " : " Add " }} ISP
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <form [formGroup]="addForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Partner Name: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ISP Member Name"
+                  formControlName="ispPartnerName"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['ispPartnerName'].invalid &&
+                    (addForm.controls['ispPartnerName'].dirty ||
+                      addForm.controls['ispPartnerName'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['ispPartnerName'].errors?.['required'] || addForm.controls['ispPartnerName'].errors?.['whitespace']"
+                  >
+                    Name is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['ispPartnerName'].errors?.['whitespace'] && addForm.controls['ispPartnerName'].errors?.['minlength']">
+                    Name must be at least 3 characters long.
+                    </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="text-left" *ngIf="!ispId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+          <div class="text-left" *ngIf="ispId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onCancle()">Cancel</button>
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- /Page Content -->
+</div>
+<!-- /Page Wrapper -->

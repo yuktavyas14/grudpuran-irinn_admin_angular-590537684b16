@@ -1,0 +1,131 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>
+      <i class="bi bi-arrow-left" (click)="onBack()"></i>
+      {{ subMenuId ? "Edit" : "Add" }} Sub Menu
+    </h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"  routerLink="/menu/master-menu">Menu Management</li>
+        <li class="breadcrumb-item active">
+          {{ subMenuId ? "Edit" : "Add" }} Sub Menu
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <!-- End Page Title -->
+
+  <div class="card">
+    <div class="card-body">
+      <!-- Vertical Form -->
+      <form class="row pt-4" [formGroup]="addForm">
+        <div class="col-md-6 my-1">
+          <div class="form-group">
+            <label for="inputNanme4" class="form-label">Language  <span class="text-danger">*</span></label>
+            <select class="form-select" name="" id="" formControlName="languageId">
+             <option value="">Select Language</option>
+             <ng-container *ngFor="let lang of languageList">
+               <option [value]="lang.id">{{lang.language}}</option>
+             </ng-container>
+            </select>
+            <span
+            *ngIf="addForm.controls['languageId'].invalid && (addForm.controls['languageId'].dirty || addForm.controls['languageId'].touched)"
+            class=" ">
+            <span class="errorMessage" *ngIf="addForm.controls['languageId'].errors?.['required'] || addForm.controls.languageId.errors?.['whitespace']">
+                 Language is Required
+            </span>
+           
+          </span>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="inputNanme4" class="form-label"> Name</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+          />
+          <span
+            *ngIf="
+              addForm.controls['name'].invalid &&
+              (addForm.controls['name'].dirty ||
+                addForm.controls['name'].touched)
+            "
+            class=" "
+          >
+            <span
+              class="errorMessage"
+              *ngIf="addForm.controls['name'].errors?.['required'] || addForm.controls.name.errors?.['whitespace']"
+            >
+              Header Name is Required
+            </span>
+            <span
+              class="errorMessage"
+              *ngIf="addForm.controls['name'].errors?.['minlength']"
+            >
+              Header Name must be at least 3 characters long.
+            </span>
+          </span>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="inputNanme4" class="form-label"> URL</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="url"
+          />
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="inputNanme4" class="form-label"> Position</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="position"
+          />
+          <span
+            *ngIf="
+              addForm.controls['position'].invalid &&
+              (addForm.controls['position'].dirty ||
+                addForm.controls['position'].touched)
+            "
+            class=" "
+          >
+            <span
+              class="errorMessage"
+              *ngIf="addForm.controls['position'].errors?.['required'] || addForm.controls.position.errors?.['whitespace']"
+            >
+            Position is Required
+            </span>
+          </span>
+        </div>
+
+        <!-- <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Sub Header</label>
+                 <input type="text" class="form-control">
+              </div> -->
+        <div class="col-md-6 mb-3">
+          <label for="inputNanme4" class="form-label">Page</label>
+          <select class="form-select" name="" id="" formControlName="pageId">
+            <option value="">Select</option>
+            <ng-container *ngFor="let page of pageList">
+              <option [value]="page.pageId">{{ page.pageName }}</option>
+            </ng-container>
+          </select>
+        </div>
+       
+        <div class="col-md-12 mb-3">
+          <div class="text-left">
+          <button type="submit" (click)="subMenuId ? onUpdate() : onSubmit()" class="btn btn-primary me-2">+ {{subMenuId ? 'Update' : 'Add'}}</button>
+          <button type="reset" (click)="onReset()" class="btn btn-secondary">Reset</button>
+        </div>
+
+        </div>
+      
+      </form>
+      <!-- Vertical Form -->
+    </div>
+  </div>
+</main>
+<!-- End #main -->

@@ -1,0 +1,125 @@
+<main id="main" class="main">
+  <div class="row">
+    <div class="col pagetitle">
+      <h1>Role List</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Role Management</li>
+          <li class="breadcrumb-item active"  routerLink="/roles">Role List</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-sm-4">
+      <a
+      routerLink="/roles/add"
+        type="button"
+        class="btn btn-primary bx-pull-right"
+        >+ Add Role</a
+      >
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body" *ngIf="roleList?.length>0">
+            <!-- Default Table -->
+            <table class="table datatable dataTable-table">
+              <thead>
+                <tr>
+                  <th scope="col">Sr.No</th>
+                  <th scope="col">Role Name</th>
+                  <th scope="col">responsbility</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let role of roleList;let i = index">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{role.roleName}}</td>
+                  <td>
+
+
+                    <div *ngIf="selectedRoleId != role.id">
+                      <div class="form-check d-inline-block ml-5" *ngFor="let item of RoleAccess">
+                        <input type="checkbox" id="{{item.name}}" class="form-check-input" id="responsbility" name="responsbility" [checked]="isroleSelected(role.responsbility,item.type)" disabled>
+                        <label class="form-check-label" for="{{item.name}}">{{item.name}}</label>
+
+                        </div>
+                        <span class="edit-role ml-5" (click)="editRole(role)" ><i class="bi bi-pencil m-r-5"></i> </span>
+                        </div>
+                        <div *ngIf="selectedRoleId == role.id">
+                        <form >
+                        <div class="form-check d-inline-block ml-5" *ngFor="let item of RoleAccess; let i=index">
+                          <!-- <input type="checkbox" class="form-check-input position-relative mt-0 me-2" id="responsbility" name="responsbility" [checked]="isroleSelected(row.responsbility,item.type)" [value]="item.type"> -->
+                          <input type="checkbox" class="form-check-input" [id]="item+i" [name]="item" [(ngModel)]="item.Checked" (change)="getCheckboxValues($event,item)" [checked]="isroleSelected(role.responsbility,item.type)">
+                          <label class="form-check-label" for="{{item+i}}">{{item.name}}</label>
+
+                          </div>
+                          <button type="button" class="btn btn-primary edit-button ml-5" (click)="onUpdate()">Ok</button>
+                        </form>
+                        </div>
+
+                  </td>
+                  <td>	<span class="{{role.active?'text-success':'text-danger'}}">
+
+                    {{role.active?'Active':'Inactive'}}
+                  </span></td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <button
+                        class="act_button"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i class="bi bi-three-dots-vertical"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <a
+                          class="dropdown-item"
+                          (click)="onView(role.id)"
+                          data-toggle="modal"
+                          data-target="#edit_user"
+                          >View/Edit</a
+                        >
+                        <!-- <a
+                          class="dropdown-item"
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#edit_user"
+                          >Edit</a
+                        > -->
+                        <a class="dropdown-item"
+                          (click)="onUpdateStatus(role)"
+                          data-toggle="modal"
+                          data-target="#edit_user"
+                          > {{role.active ? 'Deactivate':'Active'}} </a>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- <ng-container *ngIf="roleList?.length>0 && totalrecored">
+              <div class="col-12 text-end">
+                <pagination-controls
+                  directionLinks:true
+                  showFirstLastButtons:true
+                  (pageChange)="pageChange($event)"
+                  class="my-pagination"
+                >
+                </pagination-controls>
+              </div>
+            </ng-container> -->
+            <!-- End Default Table Example -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->

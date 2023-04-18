@@ -1,0 +1,92 @@
+<p>add-links works!</p>
+ <!-- Page Wrapper -->
+ <div class="page-wrapper"> 
+    
+    <!-- Page Content -->
+    <div class="content container-fluid"> 
+      
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="page-title">{{linkId?' Update' :' Add '}} Links</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/links">Links Management</a></li>
+              <li class="breadcrumb-item active">{{linkId?' Update' :' Add '}} Links</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+      
+      <div class="card mb-4">
+        <div class="card-body">
+          <form [formGroup]="addForm" >
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label>  Title: <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Title" formControlName="linkTitle">
+                      <span
+                      *ngIf="addForm.controls['linkTitle'].invalid && (addForm.controls['linkTitle'].dirty || addForm.controls['linkTitle'].touched)"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['linkTitle'].errors?.['required'] ||  addForm.controls['linkTitle'].errors?.['whitespace']">
+                           Title is Required
+                      </span>
+                      <span class="errorMessage" *ngIf="!addForm.controls['linkTitle'].errors?.['whitespace'] && addForm.controls['linkTitle'].errors?.['minlength']">
+                        title must be at least 3 characters long.
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>  URL: <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Url" formControlName="linkUrl">
+                      <span
+                      *ngIf="addForm.controls['linkUrl'].invalid && (addForm.controls['linkUrl'].dirty || addForm.controls['linkUrl'].touched)"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['linkUrl'].errors?.['required'] ||  addForm.controls['linkUrl'].errors?.['whitespace']">
+                           URL is Required
+                      </span>
+                      <span class="errorMessage" *ngIf="!addForm.controls['linkUrl'].errors?.['whitespace'] && addForm.controls['linkUrl'].errors?.['minlength']">
+                        url must be at least 3 characters long.
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label> Message: <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" placeholder="Message" formControlName="linkMessage">
+                  <span
+                  *ngIf="addForm.controls['linkMessage'].invalid && (addForm.controls['linkMessage'].dirty || addForm.controls['linkMessage'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['linkMessage'].errors?.['required'] || addForm.controls['linkMessage'].errors?.['whitespace']">
+                       Message is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['linkMessage'].errors?.['whitespace'] && addForm.controls['linkMessage'].errors?.['minlength']">
+                    Message must be at least 10 characters long.
+                    </span>
+                  </span>
+                </div>
+              </div>
+             
+            
+            </div>
+            <div class="text-left" *ngIf="!linkId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            </div>
+            <div class="text-left" *ngIf="linkId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onCancle()">Cancel</button>
+              <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Content --> 
+    
+  </div>
+  <!-- /Page Wrapper --> 

@@ -1,0 +1,39 @@
+
+<main id="main">
+  <!-- Page Wrapper -->
+<div class="page-wrapper">
+
+ <!-- Page Content -->
+ <div class="content container-fluid">
+
+   <!-- Page Header -->
+   <div class="page-header">
+     <div class="row align-items-center">
+       <div class="col">
+         <h3 class="page-title">  <i class="la la-arrow-left" (click)="onBack()"></i> Pages View</h3>
+         <ul class="breadcrumb">
+     <li class="breadcrumb-item"><a routerLink="/pages">Pages Management</a></li>
+     <li class="breadcrumb-item active">Pages View </li>
+   </ul>
+       </div>
+     </div>
+   </div>
+
+
+   <div class="card">
+     <div class="card-body">
+         <div class="row">
+ <div class="col-md-12" *ngIf="pageContent != undefined &&  pageContent != null &&  pageContent != 'null'  && pageContent !='';else second">
+     <div class="page-content-view" [innerHTML]="pageContent"></div>
+     </div>
+     <ng-template #second>
+       <h3 class="p-2"> No Content</h3>
+   </ng-template>
+
+     </div>
+     </div>
+     </div>
+
+ </div>
+ </div>
+</main>

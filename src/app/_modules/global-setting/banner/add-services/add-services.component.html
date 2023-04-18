@@ -1,0 +1,143 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>{{settingId?'Update':'Add'}} Banner Service</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"  routerLink="/global-setting/banner">Global Setting</li>
+          <li class="breadcrumb-item active">{{settingId?'Update':'Add'}} Banner Service </li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+    <div class="card">
+            <div class="card-body">
+
+
+              <!-- Vertical Form -->
+              <form [formGroup]="addForm" >
+                <div class="row">
+                  <div class="col-md-6 my-1">
+                    <div class="form-group">
+                      <label for="inputNanme4" class="form-label">Language  <span class="text-danger">*</span></label>
+                      <select class="form-select" name="" id="" formControlName="languageId">
+                       <option value="">Select Language</option>
+                       <ng-container *ngFor="let lang of languageList">
+                         <option [value]="lang.id">{{lang.language}}</option>
+                       </ng-container>
+                      </select>
+                      <span
+                      *ngIf="addForm.controls['languageId'].invalid && (addForm.controls['languageId'].dirty || addForm.controls['languageId'].touched)"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['languageId'].errors?.['required'] || addForm.controls.languageId.errors?.['whitespace']">
+                           Language is Required
+                      </span>
+
+                    </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 my-1">
+                    <div class="form-group">
+                      <label>Subject: <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Subject" formControlName="subject">
+                      <span
+                      *ngIf="addForm.controls['subject'].invalid && (addForm.controls['subject'].dirty || addForm.controls['subject'].touched)"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['subject'].errors?.['required'] || addForm.controls.subject.errors?.['whitespace']">
+                           Subject is Required
+                      </span>
+                      <span class="errorMessage" *ngIf="addForm.controls['subject'].errors?.['minlength']">
+                        Subject must be at least 3 characters long.
+                       </span>
+                    </span>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6  my-1">
+                    <div class="form-group">
+                      <label>Redirect Url:</label>
+                      <input type="text" class="form-control" placeholder="Redirect Url" formControlName="redirectUrl">
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6  my-1">
+                    <div class="form-group">
+                      <label>Image:<span class="text-danger"  *ngIf="!settingId">*</span></label>
+                      <input type="file" name="file" class="form-control" placeholder="Image"  (change)="onFileSelected($event)"  #fileUpload>
+                      <div class="image-file-name" *ngIf="settingId && showImageNameFile">
+                        {{updateDataById?.data.imageIcon}}
+                       </div>
+                      <span
+                      *ngIf="!settingId && (addForm.controls['file'].invalid && (addForm.controls['file'].dirty || addForm.controls['file'].touched))"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['file'].errors?.['required']">
+                           Image is Required
+                      </span>
+                    </span>
+
+                    </div>
+                  </div>
+                  <div class="col-md-6 my-1">
+                    <div class="form-group">
+                      <label for="inputNanme4" class="form-label">Page  <span class="text-danger">*</span></label>
+                      <select class="form-select" name="" id="" formControlName="pageId" >
+                       <option value="">Select Page</option>
+                       <ng-container *ngFor="let page of pageList">
+                         <option [value]="page.pageId">{{page.pageName}}</option>
+                       </ng-container>
+                      </select>
+                    
+                    </div>
+                  </div>
+                  <div class="col-md-6 my-2">
+                    <div class="form-group">
+                      <label>Read More Button: <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Title" formControlName="readMore">
+                      <span
+                      *ngIf="addForm.controls['readMore'].invalid && (addForm.controls['readMore'].dirty || addForm.controls['readMore'].touched)"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['readMore'].errors?.['required'] || addForm.controls.readMore.errors?.['whitespace']">
+                           readMore is Required
+                      </span>
+        
+                    </span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 my-1">
+                    <div class="form-group">
+                      <input type="hidden" class="form-control" placeholder="Subject" formControlName="settingType" value="1">
+                    </div>
+                  </div>
+                  <div class="col-md-12  my-1">
+                    <div class="form-group">
+                      <label>Message:</label>
+                      <textarea name="" rows="5" class="form-control" placeholder="message" maxlength="250"  formControlName="message"></textarea>
+                      <span class="text-muted">Max 250 characters</span>
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <div class="text-left" *ngIf="!settingId">
+                  <button type="button" class="btn btn-secondary me-2" (click)="onReset(1)">Reset</button>
+                  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+                </div>
+                <div class="text-left" *ngIf="settingId">
+                  <button type="button" class="btn btn-secondary me-2" (click)="onReset(2)">Cancel</button>
+                  <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+
+
+
+
+  </main><!-- End #main -->

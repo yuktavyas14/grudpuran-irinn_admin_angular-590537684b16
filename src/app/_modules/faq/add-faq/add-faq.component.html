@@ -1,0 +1,137 @@
+<!-- Page Wrapper -->
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>{{faqId?'Update':'Add'}} FAQ</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" routerLink="/faq"> {{faqId?'Update':'Add'}} Management</li>
+        <li class="breadcrumb-item active"> {{faqId?'Update':'Add'}} FAQ </li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+
+  <div class="card">
+          <div class="card-body">
+
+        <form [formGroup]="addForm">
+          <div class="row">
+            <div class="col-md-6 my-1">
+              <div class="form-group">
+                <label for="inputNanme4" class="form-label">Language  <span class="text-danger">*</span></label>
+                <select class="form-select" name="" id="" formControlName="languageId" (change)="getDataById()">
+                 <option value="">Select Language</option>
+                 <ng-container *ngFor="let lang of languageList">
+                   <option [value]="lang.id">{{lang.language}}</option>
+                 </ng-container>
+                </select>
+                <span
+                *ngIf="addForm.controls['languageId'].invalid && (addForm.controls['languageId'].dirty || addForm.controls['languageId'].touched)"
+                class=" ">
+                <span class="errorMessage" *ngIf="addForm.controls['languageId'].errors?.['required'] || addForm.controls.languageId.errors?.['whitespace']">
+                     Language is Required
+                </span>
+
+              </span>
+              </div>
+            </div>
+            <div class="col-md-6 my-1">
+              <div class="form-group">
+                <label> Qustion: <span   class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Faq Question"
+                  formControlName="faqQuestion"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['faqQuestion'].invalid &&
+                    (addForm.controls['faqQuestion'].dirty ||
+                      addForm.controls['faqQuestion'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['faqQuestion'].errors?.['required'] || addForm.controls['faqQuestion'].errors?.['whitespace']"
+                  >
+                  Question is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['faqQuestion'].errors?.['whitespace'] && addForm.controls['faqQuestion'].errors?.['minlength']">
+                    Node must be at least 6 characters long.
+                    </span>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-12 my-1">
+              <div class="form-group">
+                <label> Answer: <span   class="text-danger">*</span></label>
+                <editor apiKey="7rzna9m07gni2ah5ymmiamj31jrwxxe9tkvtatergb0cb1yr"
+                formControlName="faqAnswer"
+                [init]="{
+                  selector: 'textarea',
+                  plugins:
+                    'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect',
+                  toolbar:
+                    'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                  tinycomments_mode: 'embedded',
+                  tinycomments_author: 'Author name',
+                  mergetags_list: [
+                    { value: 'First.Name', title: 'First Name' },
+                    { value: 'Email', title: 'Email' }
+                  ]
+                }"
+              ></editor>
+                <!-- <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Faq Answer"
+                  formControlName="faqAnswer"
+                /> -->
+                <span
+                  *ngIf="
+                    addForm.controls['faqAnswer'].invalid &&
+                    (addForm.controls['faqAnswer'].dirty ||
+                      addForm.controls['faqAnswer'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['faqAnswer'].errors?.['required'] || addForm.controls['faqAnswer'].errors?.['whitespace']"
+                  >
+                    Answer is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['faqAnswer'].errors?.['whitespace'] && addForm.controls['faqAnswer'].errors?.['minlength']">
+                    Node must be at least 10 characters long.
+                    </span>
+
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="text-left" *ngIf="!faqId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+          <div class="text-left" *ngIf="faqId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onCancle()">Cancel</button>
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">
+              Update
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+
+
+
+
+</main><!-- End #main -->

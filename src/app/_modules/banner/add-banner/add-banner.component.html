@@ -1,0 +1,139 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Add Banner</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">Banner Management</li>
+        <li class="breadcrumb-item active">Add Banner</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+
+  <div class="card">
+          <div class="card-body">
+
+
+            <!-- Vertical Form -->
+            <form [formGroup]="addForm" >
+              <div class="row">
+                <div class="col-md-6 my-2">
+                  <div class="form-group">
+                    <label for="inputNanme4" class="form-label">Language  <span class="text-danger">*</span></label>
+                    <select class="form-select" name="" id="" formControlName="languageId">
+                     <option value="">Select Language</option>
+                 <ng-container *ngFor="let lang of languageList">
+                       <option [value]="lang.id">{{lang.language}}</option>
+                     </ng-container>
+                    </select>
+                    <span
+                    *ngIf="addForm.controls['languageId'].invalid && (addForm.controls['languageId'].dirty || addForm.controls['languageId'].touched)"
+                    class=" ">
+                    <span class="errorMessage" *ngIf="addForm.controls['languageId'].errors?.['required'] || addForm.controls.languageId.errors?.['whitespace']">
+                         Language is Required
+                    </span>
+
+                  </span>
+                  </div>
+                </div>
+                <div class="col-md-6 my-1">
+                  <div class="form-group">
+                    <label>Name: <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" placeholder="Name" formControlName="imageName">
+                    <span
+                    *ngIf="addForm.controls['imageName'].invalid && (addForm.controls['imageName'].dirty || addForm.controls['imageName'].touched)"
+                    class=" ">
+                    <span class="errorMessage" *ngIf="addForm.controls['imageName'].errors?.['required'] || addForm.controls.imageName.errors?.['whitespace']">
+                         Name is Required
+                    </span>
+                    <span class="errorMessage" *ngIf="addForm.controls['imageName'].errors?.['minlength']">
+                      Name must be at least 3 characters long.
+                     </span>
+                  </span>
+                  </div>
+                </div>
+                <div class="col-md-6  my-1">
+                  <div class="form-group">
+                    <label>Position:<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" placeholder="position" formControlName="position">
+                    <span
+                    *ngIf="addForm.controls['position'].invalid && (addForm.controls['position'].dirty || addForm.controls['position'].touched)"
+                    class=" ">
+                    <span class="errorMessage" *ngIf="addForm.controls['position'].errors?.['required'] || addForm.controls.position.errors?.['whitespace']">
+                      position is Required
+                    </span>
+                  </span>
+                  </div>
+                </div>
+                <div class="col-md-6  my-1">
+                  <div class="form-group">
+                    <label>Join Url:</label>
+                    <input type="text" class="form-control" placeholder="Join Url" formControlName="joinNowUrl">
+
+                  </div>
+                </div>
+                <div class="col-md-6  my-1">
+                  <div class="form-group">
+                    <label>Video Url:</label>
+                    <input type="text" class="form-control" placeholder="Video Url" formControlName="bannerVideo">
+
+                  </div>
+                </div>
+                <div class="col-md-6  my-1">
+                  <div class="form-group">
+                    <label>Video Title:</label>
+                    <input type="text" class="form-control" placeholder="Video Title" formControlName="videotitle">
+
+                  </div>
+                </div>
+                <div class="col-md-6  my-1">
+                  <div class="form-group">
+                    <label>Join Title:</label>
+                    <input type="text" class="form-control" placeholder="Join Title" formControlName="readMore">
+
+                  </div>
+                </div>
+                <div class="col-md-6  my-1">
+                  <div class="form-group">
+                    <label>Image:<span class="text-danger">*</span></label>
+                    <input type="file" name="file" class="form-control" placeholder="Image"  (change)="onFileSelected($event)"  #fileUpload>
+                    <span
+                    *ngIf="!bannerId && (addForm.controls['file'].invalid && (addForm.controls['file'].dirty || addForm.controls['file'].touched))"
+                    class=" ">
+                    <span class="errorMessage" *ngIf="addForm.controls['file'].errors?.['required']">
+                         Image is Required
+                    </span>
+                  </span>
+
+                  </div>
+                </div>
+                <div class="col-md-12  my-1">
+                  <div class="form-group">
+                    <label>Description:</label>
+                    <textarea name="" rows="5" class="form-control" placeholder="Description" maxlength="250"  formControlName="description"></textarea>
+                    <span class="text-muted">Max 250 characters</span>
+                  </div>
+                </div>
+
+
+
+              </div>
+              <div class="text-left" *ngIf="!bannerId">
+                <button type="button" class="btn btn-secondary me-2" (click)="onReset(1)">Reset</button>
+                <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+              </div>
+              <div class="text-left" *ngIf="bannerId">
+                <button type="button" class="btn btn-secondary me-2" (click)="onReset(2)">Cancel</button>
+                <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+
+
+
+
+</main><!-- End #main -->

@@ -1,0 +1,93 @@
+ <!-- Page Wrapper -->
+ <div class="page-wrapper"> 
+    
+    <!-- Page Content -->
+    <div class="content container-fluid"> 
+      
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="page-title" *ngIf="judgementId">Update Judgement Order</h3>
+            <h3 class="page-title" *ngIf="!judgementId">Add Judgement Order</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/judgement-order">Judgement Order Management</a></li>
+              <li class="breadcrumb-item active">Judgement Order Document</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+      
+      <div class="card mb-4">
+        <div class="card-body">
+          <form [formGroup]="addForm" >
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Title:<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" placeholder="title" formControlName="titleOfOrder">
+                  <span
+                  *ngIf="addForm.controls['titleOfOrder'].invalid && (addForm.controls['titleOfOrder'].dirty || addForm.controls['titleOfOrder'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['titleOfOrder'].errors?.['required'] || addForm.controls['titleOfOrder'].errors?.['whitespace']">
+                       Title is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['titleOfOrder'].errors?.['whitespace'] && addForm.controls['titleOfOrder'].errors?.['minlength']">
+                    Title must be at least 3 characters long.
+                    </span>
+                </span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Date Of Judgement: <span class="text-danger">*</span></label>
+                  <input type="date" class="form-control" placeholder="title" formControlName="dateOfjudgement">
+                  <span
+                  *ngIf="addForm.controls['dateOfjudgement'].invalid && (addForm.controls['dateOfjudgement'].dirty || addForm.controls['dateOfjudgement'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['dateOfjudgement'].errors?.['required'] || addForm.controls['dateOfjudgement'].errors?.['whitespace']">
+                       DOJ is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['dateOfjudgement'].errors?.['whitespace'] && addForm.controls['dateOfjudgement'].errors?.['minlength']">
+                    DOJ must be at least 3 characters long.
+                    </span>
+                </span>
+                </div>
+              </div>
+               
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Image: <span *ngIf="!judgementId"  class="text-danger">*</span></label>
+                  <input type="file" name="file" class="form-control" placeholder="Image"  (change)="onFileSelected($event)"  #fileUpload accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" >
+                  <span
+                  *ngIf="!judgementId && (addForm.controls['file'].invalid && (addForm.controls['file'].dirty || addForm.controls['file'].touched))"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['file'].errors?.['required']">
+                       Image is Required
+                  </span>
+                </span>
+                  
+                </div>
+              </div>
+              
+               
+             
+            
+            </div>
+            <div class="text-left" *ngIf="!judgementId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(1)">Reset</button>
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            </div>
+            <div class="text-left" *ngIf="judgementId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(2)">Cancel</button>
+              <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Content --> 
+    
+  </div>
+  <!-- /Page Wrapper --> 

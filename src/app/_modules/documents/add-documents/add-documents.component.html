@@ -1,0 +1,82 @@
+ <!-- Page Wrapper -->
+ <div class="page-wrapper"> 
+    
+    <!-- Page Content -->
+    <div class="content container-fluid"> 
+      
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="page-title" *ngIf="documentId">Update Document</h3>
+            <h3 class="page-title" *ngIf="!documentId">Add Document</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/documents">Document Management</a></li>
+              <li class="breadcrumb-item active">Add Document</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+      
+      <div class="card mb-4">
+        <div class="card-body">
+          <form [formGroup]="addForm" >
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Title:<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" placeholder="title" formControlName="documentTitle">
+                  <span
+                  *ngIf="addForm.controls['documentTitle'].invalid && (addForm.controls['documentTitle'].dirty || addForm.controls['documentTitle'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['documentTitle'].errors?.['required'] || addForm.controls['documentTitle'].errors?.['whitespace']">
+                       Title is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['documentTitle'].errors?.['whitespace'] && addForm.controls['documentTitle'].errors?.['minlength']">
+                    Title must be at least 10 characters long.
+                   </span>
+                </span>
+                </div>
+              </div>
+               
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Image:<span *ngIf="!documentId" class="text-danger">*</span></label>
+                  <input type="file" name="file" class="form-control" placeholder="Image"  (change)="onFileSelected($event)"  #fileUpload accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" >
+                  <span
+                  *ngIf="!documentId && (addForm.controls['file'].invalid && (addForm.controls['file'].dirty || addForm.controls['file'].touched))"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['file'].errors?.['required']">
+                       Image is Required
+                  </span>
+                </span>
+                  
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Description:</label>
+                  <textarea name="" rows="5" class="form-control" placeholder="Description" formControlName="documentbDes"></textarea>
+                </div>
+              </div>
+               
+             
+            
+            </div>
+            <div class="text-left" *ngIf="!documentId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(1)">Reset</button>
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            </div>
+            <div class="text-left" *ngIf="documentId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(2)">Cancel</button>
+              <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Content --> 
+    
+  </div>
+  <!-- /Page Wrapper --> 

@@ -1,0 +1,88 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <!-- Page Content -->
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">
+            {{ faqId ? " Update " : " Add " }} Other Activity
+          </h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/other-activity">Other Activity Management</a>
+            </li>
+            <li class="breadcrumb-item active">
+              {{ faqId ? " Update " : " Add " }} Other Activity
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <form [formGroup]="addForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Name: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Activity Name"
+                  formControlName="otherActivityName"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['otherActivityName'].invalid &&
+                    (addForm.controls['otherActivityName'].dirty ||
+                      addForm.controls['otherActivityName'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['otherActivityName'].errors?.['required'] || addForm.controls['otherActivityName'].errors?.['whitespace']"
+                  >
+                    Name is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['otherActivityName'].errors?.['whitespace'] && addForm.controls['otherActivityName'].errors?.['minlength']">
+                    Name must be at least 3 characters long.
+                    </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Url:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Activity Url"
+                  formControlName="titleUrl"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="text-left" *ngIf="!faqId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+          <div class="text-left" *ngIf="faqId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onCancle()">Cancel</button>
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- /Page Content -->
+</div>
+<!-- /Page Wrapper -->

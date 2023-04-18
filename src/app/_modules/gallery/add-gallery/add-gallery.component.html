@@ -1,0 +1,76 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>{{galleryId?'Update':'Add'}} Gallery</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" routerLink="/gallery">Gallery Management</li>
+        <li class="breadcrumb-item active">{{galleryId?'Update':'Add'}}  Gallery</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <form [formGroup]="addForm" >
+            <div class="row">
+                <div class="col-md-6 my-2">
+                    <div class="form-group">
+                      <label> Name: <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder=" Name" formControlName="imageName">
+                      <span
+                      *ngIf="addForm.controls['imageName'].invalid && (addForm.controls['imageName'].dirty || addForm.controls['imageName'].touched)"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['imageName'].errors?.['required'] || addForm.controls['imageName'].errors?.['whitespace']">
+                        Name is Required
+                      </span>
+                      <span class="errorMessage" *ngIf="!addForm.controls['imageName'].errors?.['whitespace'] && addForm.controls['imageName'].errors?.['minlength']">
+                        Name must be at least 10 characters long.
+                        </span>
+                    </span>
+                    </div>
+                  </div>
+
+
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label>Image: <span *ngIf="!galleryId" class="text-danger">*</span></label>
+                  <input type="file" name="file" class="form-control" placeholder="Image"  (change)="onFileSelected($event)"  #fileUpload>
+                  <div class="image-file-name" *ngIf="galleryId && showImageNameFile">
+                    {{updateDataById?.data.photo}}
+                   </div>
+                  <span
+                  *ngIf="!galleryId && (addForm.controls['file'].invalid && (addForm.controls['file'].dirty || addForm.controls['file'].touched))"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['file'].errors?.['required']">
+                       Image is Required
+                  </span>
+                </span>
+
+                </div>
+              </div>
+
+              <!-- <div class="col-md-12">
+                <div class="form-group">
+                  <label>Description:</label>
+                  <textarea name="" rows="5" class="form-control" placeholder="Description" formControlName="description"></textarea>
+                </div>
+              </div> -->
+
+
+
+            </div>
+            <div class="text-left" *ngIf="!galleryId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(1)">Reset</button>
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            </div>
+            <div class="text-left" *ngIf="galleryId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(2)">Cancel</button>
+              <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+</main>

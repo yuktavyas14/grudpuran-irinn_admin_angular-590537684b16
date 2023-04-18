@@ -1,0 +1,95 @@
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1> {{serviceId?' Update ':' Add '}} Service</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" routerLink="/services">Service Management</li>
+          <li class="breadcrumb-item active">{{serviceId?' Update ':' Add '}} Service</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <form [formGroup]="addForm" >
+              <div class="row">
+                <div class="col-md-6 my-1">
+                  <div class="form-group">
+                    <label for="inputNanme4" class="form-label">Language  <span class="text-danger">*</span></label>
+                    <select class="form-select" name="" id="" formControlName="languageId">
+                     <option value="">Select Language</option>
+                     <ng-container *ngFor="let lang of languageList">
+                       <option [value]="lang.id">{{lang.language}}</option>
+                     </ng-container>
+                    </select>
+                    <span
+                    *ngIf="addForm.controls['languageId'].invalid && (addForm.controls['languageId'].dirty || addForm.controls['languageId'].touched)"
+                    class=" ">
+                    <span class="errorMessage" *ngIf="addForm.controls['languageId'].errors?.['required'] || addForm.controls.languageId.errors?.['whitespace']">
+                         Language is Required
+                    </span>
+
+                  </span>
+                  </div>
+                </div>
+                  <div class="col-md-6  my-2">
+                      <div class="form-group">
+                        <label>Service Name: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" placeholder="Service Name" formControlName="logoName">
+                        <span
+                        *ngIf="addForm.controls['logoName'].invalid && (addForm.controls['logoName'].dirty || addForm.controls['logoName'].touched)"
+                        class=" ">
+                        <span class="errorMessage" *ngIf="addForm.controls['logoName'].errors?.['required'] || addForm.controls['logoName'].errors?.['whitespace']">
+                              Name is Required
+                        </span>
+                        <span class="errorMessage" *ngIf="!addForm.controls['logoName'].errors?.['whitespace'] && addForm.controls['logoName'].errors?.['minlength']">
+                          Node must be at least 2 characters long.
+                          </span>
+                      </span>
+                      </div>
+                    </div>
+
+                  <div class="col-md-6  my-2">
+                      <div class="form-group">
+                        <label>Redirect Url: </label>
+                        <input type="text" class="form-control" placeholder="Redirect Url" formControlName="redirectUrl">
+
+                      </div>
+                    </div>
+
+
+                <div class="col-md-6 my-2">
+                  <div class="form-group">
+                    <label>Image:  </label>
+                    <input type="file" name="file" class="form-control" placeholder="Image"  (change)="onFileSelected($event)"  #fileUpload accept="image/x-png,image/gif,image/jpeg"  >
+                    <div class="image-file-name" *ngIf="serviceId && showImageNameFile">
+                      {{updateDataById?.data.logoImage}}
+                     </div>
+                  </div>
+                </div>
+                <div class="col-md-6 my-2">
+                  <div class="form-group">
+                    <label>Choose Pdf For Fees Structure:</label>
+                    <input type="file" name="file" accept="application/pdf" class="form-control" placeholder="Image"  (change)="onFileSelected1($event)"  #fileUpload1 accept="application/pdf,application/vnd.ms-excel">
+                    <div class="image-file-name" *ngIf="serviceId && showPdfName">
+                      {{updateDataById?.data.pdfFile}}
+                     </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="text-left" *ngIf="!serviceId">
+                <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+                <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+              </div>
+              <div class="text-left" *ngIf="serviceId">
+                <button type="button" class="btn btn-secondary me-2" (click)="onCancle()">Cancel</button>
+                <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+  </main>

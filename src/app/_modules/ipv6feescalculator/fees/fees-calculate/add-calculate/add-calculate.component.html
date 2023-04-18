@@ -1,0 +1,150 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+      <h1>
+        <i class="bi bi-arrow-left" (click)="onCancel()"></i>
+        {{ feesId ? "Edit" : "Add" }} Fees
+      </h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" routerLink="/feescalculate/fees" >IPV6 And IPV4</li>
+          <li class="breadcrumb-item active">
+            {{ feesId ? "Edit" : "Add" }} Fees
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <!-- End Page Title -->
+  
+    <div class="card">
+      <div class="card-body">
+        <!-- Vertical Form -->
+        <form class="row pt-4" [formGroup]="addForm">
+          <div class="col-md-6 mb-3">
+            <label for="inputNanme4" class="form-label"> IPBlock4</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="ipBlock4"
+            />
+            <span
+            *ngIf="addForm.controls['ipBlock4'].invalid &&
+              (addForm.controls['ipBlock4'].dirty ||addForm.controls['ipBlock4'].touched)"
+            class=" ">
+            <span class="errorMessage"
+              *ngIf="addForm.controls['ipBlock4'].errors?.['required'] || addForm.controls.ipBlock4.errors?.['whitespace']"
+            >
+            IPBlock4 is Required
+            </span>
+          </span>
+          </div>
+  
+          <div class="col-md-6 mb-3">
+            <label for="inputNanme4" class="form-label"> IPBlock6</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="ipBlock6"
+            />
+            <span
+            *ngIf="addForm.controls['ipBlock6'].invalid &&
+              (addForm.controls['ipBlock6'].dirty ||addForm.controls['ipBlock6'].touched)"
+            class=" ">
+            <span class="errorMessage"
+              *ngIf="addForm.controls['ipBlock6'].errors?.['required'] || addForm.controls.ipBlock6.errors?.['whitespace']"
+            >
+            IPBlock4 is Required
+            </span>
+          </span>
+          </div>
+  
+          <div class="col-md-6 mb-3">
+            <label for="inputNanme4" class="form-label"> IPV4Fee</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="ipv4Fee"
+            />
+            <span
+            *ngIf="addForm.controls['ipv4Fee'].invalid &&
+              (addForm.controls['ipv4Fee'].dirty ||addForm.controls['ipv4Fee'].touched)"
+            class=" ">
+            <span class="errorMessage"
+              *ngIf="addForm.controls['ipv4Fee'].errors?.['required'] || addForm.controls.ipv4Fee.errors?.['whitespace']"
+            >
+            IPBlock4 is Required
+            </span>
+          </span>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputNanme4" class="form-label"> IPV6Fee</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="ipv6Fee"
+            />
+            <span
+            *ngIf="addForm.controls['ipv6Fee'].invalid &&
+              (addForm.controls['ipv6Fee'].dirty ||addForm.controls['ipv6Fee'].touched)"
+            class=" ">
+            <span class="errorMessage"
+              *ngIf="addForm.controls['ipv6Fee'].errors?.['required'] || addForm.controls.ipv6Fee.errors?.['whitespace']"
+            >
+            IPBlock4 is Required
+            </span>
+          </span>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputNanme4" class="form-label"> IPV4Address</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="ipv4addresses"
+            />
+            <span
+            *ngIf="addForm.controls['ipv4addresses'].invalid &&
+              (addForm.controls['ipv4addresses'].dirty ||addForm.controls['ipv4addresses'].touched)"
+            class=" ">
+            <span class="errorMessage"
+              *ngIf="addForm.controls['ipv4addresses'].errors?.['required'] || addForm.controls.ipv4addresses.errors?.['whitespace']"
+            >
+            IPBlock4 is Required
+            </span>
+          </span>
+          </div>
+  
+          <div class="col-md-6 mb-3">
+            <label for="inputNanme4" class="form-label"> IPV6Address</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="ipv6addresses"
+            />
+            <span
+            *ngIf="addForm.controls['ipv6addresses'].invalid &&
+              (addForm.controls['ipv6addresses'].dirty ||addForm.controls['ipv6addresses'].touched)"
+            class=" ">
+            <span class="errorMessage"
+              *ngIf="addForm.controls['ipv6addresses'].errors?.['required'] || addForm.controls.ipv6addresses.errors?.['whitespace']"
+            >
+            IPBlock4 is Required
+            </span>
+          </span>
+          
+          </div>
+    
+          
+          <div class="col-md-12 mb-3">
+            <div class="text-left">
+            <button type="submit" (click)="feesId ? onUpdate() : onSubmit()" class="btn btn-primary me-2">+ {{feesId ? 'Update' : 'Add'}}</button>
+            <button type="reset" (click)="onReset()" class="btn btn-secondary">Reset</button>
+          </div>
+  
+          </div>
+  
+        </form>
+        <!-- Vertical Form -->
+      </div>
+    </div>
+  </main>
+  <!-- End #main -->
+  

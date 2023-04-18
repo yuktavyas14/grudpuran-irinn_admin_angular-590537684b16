@@ -1,0 +1,149 @@
+<main id="main" class="main">
+
+    <div class="row">
+		<div class="col pagetitle">
+		  <h1>Banner List</h1>
+		  <nav>
+			<ol class="breadcrumb">
+			  <li class="breadcrumb-item" routerLink="/banner/add">Banner Management</li>
+			  <li class="breadcrumb-item active" routerLink="/banner/add">Banner List</li>
+			</ol>
+		  </nav>
+		</div>
+
+			<div class="col-sm-4"><a routerLink="/banner/add" type="submit" class="btn btn-primary bx-pull-right">+ Add Banner</a></div>
+		  </div>
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <!-- Multi Columns Form -->
+              <form class="row g-3 pt-3">
+                <div class="col-md-4">
+                  <label class="form-label">Language:</label>
+                  <select
+                    class="form-select"
+                    (change)="getBannerList()"
+                    name="languageId"
+                    [(ngModel)]="languageId"
+                  >
+                  <ng-container *ngFor="let lang of languageList">
+                    <option [value]="lang.id">{{lang.language}}</option>
+                  </ng-container>
+                    
+                  </select>
+                </div>
+         
+                
+                
+      
+                <!-- <div class="col-md-4">
+                  <label class="form-label d-block">&nbsp;</label>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                     
+                  >
+                    Submit
+                  </button>
+                </div> -->
+              </form>
+              <!-- End Multi Columns Form -->
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body" *ngIf="bannerList?.length>0">
+              
+                <table class="table datatable dataTable-table">
+                <thead>
+                  <tr>
+                    <th scope="col"> Sr.No</th>
+                    <th scope="col">Banner Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Status</th>
+					          <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let banner of bannerList| paginate: config;let i = index">
+                    <th scope="row"> {{ page == 1 ? i + 1 : (page - 1) * itemsPerPage + i + 1 }}</th>
+                    <td>{{banner.bannerName}}</td>
+                    <td>{{banner.position}}</td>
+                    <td><div class="banner_image"><img [src]="banner.imageUrl+banner.photos"></div></td>
+                    <td>	<span class="{{banner.status?'text-success':'text-danger'}}">
+
+                      {{banner.status?'Active':'Inactive'}}
+                    </span></td>
+                    <td class="text-right">
+                      <div class="btn-group">
+                        <button
+                          class="act_button"
+                          type="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <a
+                            class="dropdown-item"
+                            (click)="onView(banner)"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >View/Edit</a
+                          >
+                          <!-- <a
+                            class="dropdown-item"
+                            href="#"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >Edit</a
+                          > -->
+                          <a
+                            class="dropdown-item"
+                            (click)="onUpdateStatus(banner)"
+                            data-toggle="modal"
+                            data-target="#edit_user"
+                            >{{banner.status?'Deactivate':'Active'}}</a
+                          >
+                          <!-- <a
+                          class="dropdown-item"
+                          (click)="onDelete(banner.id)"
+                          data-toggle="modal"
+                          data-target="#edit_user"
+                          >Delete</a
+                        > -->
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+              <ng-container *ngIf="bannerList?.length>0 && totalrecored">
+                <div class="col-12 text-end">
+                  <pagination-controls
+                    directionLinks:true
+                    showFirstLastButtons:true
+                    (pageChange)="pageChange($event)"
+                    class="my-pagination"
+                  >
+                  </pagination-controls>
+                </div>
+              </ng-container>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->

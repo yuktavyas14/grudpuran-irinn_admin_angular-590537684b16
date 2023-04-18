@@ -1,0 +1,104 @@
+<main id="main" class="main">
+    <div class="row">
+          <div class="col pagetitle">
+            <h1>Languages List</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" routerLink="/languages">Language Management </li>
+                <li class="breadcrumb-item active">Languages List</li>
+              </ol>
+            </nav>
+          </div>
+  
+              <div class="col-sm-4"><a routerLink="/global-setting/languages/add" type="submit" class="btn btn-primary bx-pull-right">+ Add </a></div>
+            </div>
+    
+    
+        <section class="section">
+          <div class="row">
+            <div class="col-lg-12">
+    
+              <div class="card">
+                <div class="card-body">
+                  
+                    <table class="table datatable dataTable-table">
+                    <thead>
+                      <tr>
+                        <th scope="col"> Sr.No</th>
+                        <th scope="col">language</th>
+                        <th scope="col">Default</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let lang of languagesList;let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{lang.language}}</td>
+                        <td>
+                          <button class="btn btn-default  {{lang.default?'btn-success':'btn-primary'}}" (click)="updateLanguageIsDefault(lang)">{{lang.default?'Default':'Click to Default'}}</button>
+
+                        </td>
+                        
+                        
+                        <td>	<span class="{{lang.status?'text-success':'text-danger'}}">
+                          {{lang.status?'Active':'Inactive'}}
+                        </span></td>
+                        <td class="text-right">
+                          <div class="btn-group">
+                            <button
+                              class="act_button"
+                              type="button"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <a
+                                class="dropdown-item"
+                                (click)="onView(lang.id)"
+                                data-toggle="modal"
+                                data-target="#edit_user"
+                                >View/Edit</a
+                              >
+                              
+                              <a
+                                class="dropdown-item"
+                                (click)="onUpdateStatus(lang)"
+                                data-toggle="modal"
+                                data-target="#edit_user"
+                                >{{lang.status?'Deactivate':'Active'}}</a
+                              >
+                              <!-- <a
+                              class="dropdown-item"
+                              (click)="onDelete(lang.id)"
+                              data-toggle="modal"
+                              data-target="#edit_user"
+                              >Delete</a
+                            > -->
+                            </ul>
+                          </div>
+                        </td>
+                      </tr>
+    
+    
+                    </tbody>
+                  </table>
+                  <!-- End Default Table Example -->
+                </div>
+              </div>
+    
+    
+            </div>
+    
+    
+          </div>
+        </section>
+      
+      
+    
+    </main>
+      <!-- /Page Content --> 
+     
+    <!-- /Page Wrapper -->

@@ -1,0 +1,116 @@
+<main id="main" class="main">
+  <div class="row">
+    <div class="col pagetitle">
+      <h1>User List</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" routerLink="/user">User Management</li>
+          <li class="breadcrumb-item active" routerLink="/user">User List</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-sm-4">
+      <a routerLink="/user/add" class="btn btn-primary bx-pull-right"
+        >+ Add User</a
+      >
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body" *ngIf="memberList?.length > 0">
+            <!-- Default Table -->
+            <table class="table datatable dataTable-table">
+              <thead>
+                <tr>
+                  <th scope="col">Sr.No</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Role</th>
+                  <th scope="col"> Verify Account</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let user of memberList | paginate : config;
+                    let i = index
+                  "
+                >
+                  <th scope="row">
+                    {{ page == 1 ? i + 1 : (page - 1) * itemsPerPage + i + 1 }}
+                  </th>
+                  <td>{{ user.firstName }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>
+                    <span *ngFor="let role of user.roles">{{
+                      role.roleName
+                    }}</span>
+                  </td>
+           
+                  <td>
+                    <button (click)="onEmailVerify(user)" class="btn verify-btn {{ user.emailVerify ? 'btn-success' : 'btn-danger' }}">
+                      {{ user.emailVerify ? "Active" : "Deactive" }}
+                    </button>
+                  </td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <button
+                        class="act_button"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i class="bi bi-three-dots-vertical"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <a
+                          class="dropdown-item"
+                          (click)="onView(user.id)"
+                          data-toggle="modal"
+                          data-target="#edit_user"
+                          >View/Edit</a
+                        >
+                        <!-- <a
+                          class="dropdown-item"
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#edit_user"
+                          >Edit</a
+                        > -->
+                        <a
+                          class="dropdown-item"
+                          (click)="onUpdateStatus(user)"
+                          data-toggle="modal"
+                          data-target="#edit_user"
+                          >{{ user.status ? "Deactivate" : "Active" }}</a
+                        >
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <ng-container *ngIf="memberList?.length > 0 && totalrecored">
+              <div class="col-12 text-end">
+                <pagination-controls
+                  directionLinks:true
+                  showFirstLastButtons:true
+                  (pageChange)="pageChange($event)"
+                  class="my-pagination"
+                >
+                </pagination-controls>
+              </div>
+            </ng-container>
+            <!-- End Default Table Example -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->

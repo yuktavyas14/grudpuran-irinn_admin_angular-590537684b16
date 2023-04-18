@@ -1,0 +1,133 @@
+<main id="main" class="main">
+<!-- Page Wrapper -->
+ <div class="page-wrapper">
+
+  <!-- Page Content -->
+  <div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title" *ngIf="bannerId">Update Banner</h3>
+          <h3 class="page-title" *ngIf="!bannerId">Add Banner</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a  routerLink="/banner">Banner Management</a></li>
+            <li class="breadcrumb-item active">Add Banner</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <form [formGroup]="addForm" >
+          <div class="row">
+            <div class="col-md-6 my-2">
+              <div class="form-group">
+                <label for="inputNanme4" class="form-label">Language  <span class="text-danger">*</span></label>
+                <select class="form-select" name="" id="" formControlName="languageId">
+                 <option value="">Select Language</option>
+             <ng-container *ngFor="let lang of languageList">
+                   <option [value]="lang.id">{{lang.language}}</option>
+                 </ng-container>
+                </select>
+                <span
+                *ngIf="addForm.controls['languageId'].invalid && (addForm.controls['languageId'].dirty || addForm.controls['languageId'].touched)"
+                class=" ">
+                <span class="errorMessage" *ngIf="addForm.controls['languageId'].errors?.['required'] || addForm.controls.languageId.errors?.['whitespace']">
+                     Language is Required
+                </span>
+
+              </span>
+              </div>
+            </div>
+            <div class="col-md-6 my-1">
+              <div class="form-group">
+                <label>Name:<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Name" formControlName="imageName">
+                <span
+                *ngIf="addForm.controls['imageName'].invalid && (addForm.controls['imageName'].dirty || addForm.controls['imageName'].touched)"
+                class=" ">
+                <span class="errorMessage" *ngIf="addForm.controls['imageName'].errors?.['required']">
+                     Name is Required
+                </span>
+              </span>
+              </div>
+            </div>
+            <div class="col-md-6 my-1">
+              <div class="form-group">
+                <label>Position:<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="position" formControlName="position">
+                <span
+                *ngIf="addForm.controls['position'].invalid && (addForm.controls['position'].dirty || addForm.controls['position'].touched)"
+                class=" ">
+                <span class="errorMessage" *ngIf="addForm.controls['position'].errors?.['required']">
+                  position is Required
+                </span>
+              </span>
+              </div>
+            </div>
+            <div class="col-md-6  my-1">
+              <div class="form-group">
+                <label>Join Url:</label>
+                <input type="text" class="form-control" placeholder="Join Url" formControlName="joinNowUrl">
+
+              </div>
+            </div>
+            <div class="col-md-6  my-1">
+              <div class="form-group">
+                <label>Video Url:</label>
+                <input type="text" class="form-control" placeholder="Video Url" formControlName="bannerVideo">
+
+              </div>
+            </div>
+            <div class="col-md-6  my-1">
+              <div class="form-group">
+                <label>Video Title:</label>
+                <input type="text" class="form-control" placeholder="Video Title" formControlName="videotitle">
+
+              </div>
+            </div>
+            <div class="col-md-6  my-1">
+              <div class="form-group">
+                <label>Join Title:</label>
+                <input type="text" class="form-control" placeholder="Join Title" formControlName="readMore">
+
+              </div>
+            </div>
+            <div class="col-md-6 my-1 ">
+              <div class="form-group">
+                <label>Image:<span class="text-danger"></span></label>
+                <input type="file" name="file" class="form-control" placeholder="Image"  (change)="onFileSelected($event)"  #fileUpload>
+                <div class="image-file-name" *ngIf="bannerId && showImageNameFile">
+                  {{updateDataById?.data.photos}}
+                 </div>
+
+              </div>
+            </div>
+            <div class="col-md-12 my-1">
+              <div class="form-group">
+                <label>Description:</label>
+                <textarea name="" rows="5" class="form-control" placeholder="Description" formControlName="description"></textarea>
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <div class="text-left my-2" *ngIf="bannerId">
+            <button type="button" class="btn btn-secondary me-2" (click)="onReset(2)">Cancel</button>
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- /Page Content -->
+
+</div>
+<!-- /Page Wrapper -->
+</main>

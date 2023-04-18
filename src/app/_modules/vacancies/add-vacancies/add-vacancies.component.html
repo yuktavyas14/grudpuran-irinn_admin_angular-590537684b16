@@ -1,0 +1,102 @@
+ <!-- Page Wrapper -->
+ <div class="page-wrapper"> 
+    
+    <!-- Page Content -->
+    <div class="content container-fluid"> 
+      
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="page-title" *ngIf="documentId">Update Vacancies</h3>
+            <h3 class="page-title" *ngIf="!documentId">Add Vacancies</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/vacancies">Vacancies Management</a></li>
+              <li class="breadcrumb-item active">Add Vacancies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+      
+      <div class="card mb-4">
+        <div class="card-body">
+          <form [formGroup]="addForm" >
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Title:<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" placeholder="title" formControlName="jobTitle">
+                  <span
+                  *ngIf="addForm.controls['jobTitle'].invalid && (addForm.controls['jobTitle'].dirty || addForm.controls['jobTitle'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['jobTitle'].errors?.['required'] || addForm.controls['jobTitle'].errors?.['whitespace']">
+                       Title is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['jobTitle'].errors?.['whitespace'] && addForm.controls['jobTitle'].errors?.['minlength']">
+                    Title must be at least 6 characters long.
+                    </span>
+                </span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Start Date:</label>
+                  <input type="date" class="form-control" placeholder="title" formControlName="startDate">
+                   
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>End Date:</label>
+                  <input type="date" class="form-control" placeholder="title" formControlName="endDate">
+                  
+                </div>
+              </div>
+               
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Image:</label>
+                  <input type="file" name="file" class="form-control" placeholder="Image"  (change)="onFileSelected($event)"  #fileUpload accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" >
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Description:<span class="text-danger">*</span></label>
+                  <textarea name="" rows="5" class="form-control" placeholder="Description" formControlName="jobDescription" maxlength="250"></textarea>
+                  <span class="text-muted">Max 250 characters</span>
+
+                  <span
+                  *ngIf="!documentId && (addForm.controls['jobDescription'].invalid && (addForm.controls['jobDescription'].dirty || addForm.controls['jobDescription'].touched))"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['jobDescription'].errors?.['required'] || addForm.controls['jobDescription'].errors?.['whitespace']">
+                    Description is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="!addForm.controls['jobDescription'].errors?.['whitespace'] && addForm.controls['jobDescription'].errors?.['minlength']">
+                    Title must be at least 20 characters long.
+                    </span>
+                </span>
+                </div>
+              </div>
+               
+             
+            
+            </div>
+            <div class="text-left" *ngIf="!documentId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(1)">Reset</button>
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            </div>
+            <div class="text-left" *ngIf="documentId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(2)">Cancel</button>
+              <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Content --> 
+    
+  </div>
+  <!-- /Page Wrapper --> 

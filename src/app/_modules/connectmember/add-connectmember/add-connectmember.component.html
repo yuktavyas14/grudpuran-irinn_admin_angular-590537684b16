@@ -1,0 +1,101 @@
+ <!-- Page Wrapper -->
+ <div class="page-wrapper"> 
+    
+    <!-- Page Content -->
+    <div class="content container-fluid"> 
+      
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="page-title">{{memberId?' Update ':' Add '}} Connected member</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/connectmember">Connected member Management</a></li>
+              <li class="breadcrumb-item active">{{memberId?' Update ':' Add '}} Connected member</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+      
+      <div class="card mb-4">
+        <div class="card-body">
+          <form [formGroup]="addForm" >
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label>  Name:<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Name" formControlName="memberName">
+                      <span
+                      *ngIf="addForm.controls['memberName'].invalid && (addForm.controls['memberName'].dirty || addForm.controls['memberName'].touched)"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['memberName'].errors?.['required'] || addForm.controls.memberName.errors?.['whitespace']">
+                           Name is Required
+                      </span>
+                    </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>  Phone Number:<span class="text-danger">*</span></label>
+                      <input type="text"  class="form-control" placeholder="Phone Number" formControlName="phoneNumber" appNumberOnly maxlength="10">
+                      <span
+                      *ngIf="addForm.controls['phoneNumber'].invalid && (addForm.controls['phoneNumber'].dirty || addForm.controls['phoneNumber'].touched)"
+                      class=" ">
+                      <span class="errorMessage" *ngIf="addForm.controls['phoneNumber'].errors?.['required'] || addForm.controls.phoneNumber.errors?.['whitespace']">
+                        Phone Number is Required
+                      </span>
+                      <span class="errorMessage" *ngIf="addForm.controls['phoneNumber'].errors?.['minlength']">
+                        Phone must be at least 10 Digits long.
+                       </span>
+                    </span>
+                    </div>
+                  </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label> Email:<span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" placeholder="email" formControlName="email">
+                  <span
+                  *ngIf="addForm.controls['email'].invalid && (addForm.controls['email'].dirty || addForm.controls['email'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['email'].errors?.['required'] || addForm.controls.email.errors?.['whitespace']">
+                       Email is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="addForm.controls['email'].errors?.['pattern']">
+                    Email must be a valid email address
+                  </span>
+                </span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label> CompanyName:<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" placeholder="Company Name" formControlName="companyName">
+                  <span
+                  *ngIf="addForm.controls['companyName'].invalid && (addForm.controls['companyName'].dirty || addForm.controls['companyName'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['companyName'].errors?.['required'] || addForm.controls.companyName.errors?.['whitespace']">
+                    Company name is Required
+                  </span>
+                </span>
+                </div>
+              </div>
+             
+            
+            </div>
+            <div class="text-left" *ngIf="!memberId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(1)">Reset</button>
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            </div>
+            <div class="text-left" *ngIf="memberId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset(2)">Cancel</button>
+              <button type="submit" class="btn btn-primary" (click)="onUpdate()">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Content --> 
+    
+  </div>
+  <!-- /Page Wrapper --> 

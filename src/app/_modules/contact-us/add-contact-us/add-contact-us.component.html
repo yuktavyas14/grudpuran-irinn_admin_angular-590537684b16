@@ -1,0 +1,286 @@
+<!-- Page Wrapper -->
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>{{faqId?'Update':'Add'}} Contact Us</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" routerLink="/contact-us"> {{faqId?'Update':'Add'}} Management</li>
+          <li class="breadcrumb-item active"> {{faqId?'Update':'Add'}} Contact Us </li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+  
+   
+    <div class="card">
+            <div class="card-body">
+  
+          <form [formGroup]="addForm">
+            <div class="row">
+              <div class="col-md-6 my-1">
+                <div class="form-group">
+                  <label for="inputNanme4" class="form-label">Language  <span class="text-danger">*</span></label>
+                  <select class="form-select" name="" id="" formControlName="languageId" (change)="getDataById()">
+                   <option value="">Select Language</option>
+                   <ng-container *ngFor="let lang of languageList">
+                     <option [value]="lang.id">{{lang.language}}</option>
+                   </ng-container>
+                  </select>
+                  <span
+                  *ngIf="addForm.controls['languageId'].invalid && (addForm.controls['languageId'].dirty || addForm.controls['languageId'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['languageId'].errors?.['required'] || addForm.controls.languageId.errors?.['whitespace']">
+                       Language is Required
+                  </span>
+                 
+                </span>
+                </div>
+              </div>
+              
+          
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Title 1:  </label>
+                  <input type="text" class="form-control" placeholder="Title 1" formControlName="title1">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Title 2:  </label>
+                  <input type="text" class="form-control" placeholder="Title 2" formControlName="title2">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Title 3:  </label>
+                  <input type="text" class="form-control" placeholder="Title 3" formControlName="title3">
+                  
+                  
+                </div>
+              </div>
+
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Address 1:  </label>
+                  <input type="text" class="form-control" placeholder="Address 1" formControlName="address1">
+                  
+                  
+                </div>
+              </div>
+
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Address 2:  </label>
+                  <input type="text" class="form-control" placeholder="Address 2" formControlName="address2">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> State 1:  </label>
+                  <input type="text" class="form-control" placeholder="State 1" formControlName="state1">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> State 2:  </label>
+                  <input type="text" class="form-control" placeholder="State 2" formControlName="state2">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Country 1:  </label>
+                  <input type="text" class="form-control" placeholder="Country 1" formControlName="country1">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Country 2:  </label>
+                  <input type="text" class="form-control" placeholder="Country 2" formControlName="country2">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Pin Code:  </label>
+                  <input type="text" class="form-control" placeholder="Pin Code" formControlName="pinCode">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Note 1:  </label>
+                  <input type="text" class="form-control" placeholder="Note 1" formControlName="note">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Note 2:  </label>
+                  <input type="text" class="form-control" placeholder="Note 2" formControlName="note2">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Phone 1:  </label>
+                  <input type="text" class="form-control" placeholder="Phone 1" formControlName="phoneNo1">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Phone 2:  </label>
+                  <input type="text" class="form-control" placeholder="Phone 2" formControlName="phoneNo2">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Fax No:  </label>
+                  <input type="text" class="form-control" placeholder="Fax No" formControlName="faxNo">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Email:  </label>
+                  <input type="text" class="form-control" placeholder="email" formControlName="email">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> RTI Related:  </label>
+                  <input type="text" class="form-control" placeholder="RTI Related" formControlName="rTIRelated">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> URL 1:  </label>
+                  <input type="text" class="form-control" placeholder="url 1" formControlName="url1">
+                  
+                  
+                </div>
+              </div>
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> URL 2:  </label>
+                  <input type="text" class="form-control" placeholder="url 2" formControlName="url2">
+                  
+                  
+                </div>
+              </div>
+             
+              <div class="col-md-6 my-2">
+                <div class="form-group">
+                  <label> Expiry Date:  </label>
+                  <input type="date" class="form-control" placeholder="" formControlName="expiryDate">
+                  
+                  
+                </div>
+              </div>
+              <!-- <div class="col-md-12 my-2">
+                <div class="form-group">
+                  <label> Description:  </label>
+                  <textarea name="" id="" formControlName="description"  rows="10" class="form-control"></textarea>
+                  
+                  
+                </div>
+              </div> -->
+              <div class="col-md-12 my-1">
+                <div class="form-group">
+                  <label> Answer: <span   class="text-danger">*</span></label>
+                  <editor apiKey="7rzna9m07gni2ah5ymmiamj31jrwxxe9tkvtatergb0cb1yr"
+                  formControlName="description"
+                  [init]="{
+                    selector: 'textarea',
+                    plugins:
+                      'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect',
+                    toolbar:
+                      'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                    tinycomments_mode: 'embedded',
+                    tinycomments_author: 'Author name',
+                    mergetags_list: [
+                      { value: 'First.Name', title: 'First Name' },
+                      { value: 'Email', title: 'Email' }
+                    ]
+                  }"
+                ></editor>
+                  <!-- <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Faq Answer"
+                    formControlName="faqAnswer"
+                  /> -->
+                  <span
+                    *ngIf="
+                      addForm.controls['description'].invalid &&
+                      (addForm.controls['description'].dirty ||
+                        addForm.controls['description'].touched)
+                    "
+                    class=" "
+                  >
+                    <span
+                      class="errorMessage"
+                      *ngIf="addForm.controls['description'].errors?.['required'] || addForm.controls['description'].errors?.['whitespace']"
+                    >
+                      Answer is Required
+                    </span>
+                    <span class="errorMessage" *ngIf="!addForm.controls['description'].errors?.['whitespace'] && addForm.controls['description'].errors?.['minlength']">
+                      Node must be at least 10 characters long.
+                      </span>
+  
+                  </span>
+                </div>
+              </div>
+             
+
+              
+
+              
+            </div>
+            <div class="text-left my-2" *ngIf="!faqId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+                Submit
+              </button>
+            </div>
+            <div class="text-left my-2" *ngIf="faqId">
+              <button type="button" class="btn btn-secondary me-2" (click)="onCancle()">Cancel</button>
+              <button type="submit" class="btn btn-primary" (click)="onUpdate()">
+                Update
+              </button>
+            </div>
+          </form>
+       
+        </div>
+      </div>
+  
+  
+  
+  
+  
+  </main><!-- End #main -->
+  

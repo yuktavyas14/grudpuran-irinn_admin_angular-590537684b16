@@ -1,0 +1,180 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>{{pageId?'Update ':'Add '}} User</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" routerLink="/user">User Management</li>
+        <li class="breadcrumb-item active">{{pageId?'Update ':'Add '}} User </li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+
+  <div class="card">
+          <div class="card-body">
+
+
+            <!-- Vertical Form -->
+            <form class="row pt-4" [formGroup]="addForm">
+              <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">First Name<span class="text-danger">*</span></label>
+                <input type="text" class="form-control"  formControlName="name" placeholder="Name..">
+                <span
+                *ngIf="addForm.controls['name'].invalid &&
+                  (addForm.controls['name'].dirty ||addForm.controls['name'].touched)"
+                class=" ">
+                <span class="errorMessage"
+                  *ngIf="addForm.controls['name'].errors?.['required'] || addForm.controls.name.errors?.['whitespace']"
+                >
+                Name is Required
+                </span>
+                <span class="errorMessage" *ngIf="addForm.controls['name'].errors?.['minlength']">
+                  Name must be at least 3 characters long.
+                 </span>
+              </span>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Last Name<span class="text-danger">*</span></label>
+                <input type="text" class="form-control"  formControlName="lastName" placeholder="Last Name..">
+                <span
+                *ngIf="addForm.controls['lastName'].invalid &&
+                  (addForm.controls['lastName'].dirty ||addForm.controls['lastName'].touched)"
+                class=" ">
+                <span class="errorMessage"
+                  *ngIf="addForm.controls['lastName'].errors?.['required'] || addForm.controls.lastName.errors?.['whitespace']"
+                >
+                Last Name is Required
+                </span>
+                <span class="errorMessage" *ngIf="addForm.controls['lastName'].errors?.['minlength']">
+                 Last Name must be at least 3 characters long.
+                 </span>
+              </span>
+              </div>
+
+        <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Email<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="email" placeholder="ingo@xyz.com">
+                <span
+                *ngIf="addForm.controls['email'].invalid &&
+                  (addForm.controls['email'].dirty ||addForm.controls['email'].touched)"
+                class=" ">
+                <span class="errorMessage"
+                  *ngIf="addForm.controls['email'].errors?.['required']"
+                >
+                Email is Required
+                </span>
+                <span class="errorMessage" *ngIf="addForm.controls['email'].errors?.['pattern']">
+                  Email must be like eg. email@gmail.com
+                 </span>
+              </span>
+              </div>
+
+        <div class="col-md-6 mb-3"  *ngIf="!pageId">
+                <label for="inputNanme4" class="form-label">Password<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="password" placeholder="********">
+                <span
+                *ngIf="addForm.controls['password'].invalid &&
+                  (addForm.controls['password'].dirty ||addForm.controls['password'].touched)"
+                class=" ">
+                <span class="errorMessage"
+                  *ngIf="addForm.controls['password'].errors?.['required']"
+                >
+                Password is Required
+                </span>
+                <span class="errorMessage" *ngIf="addForm.controls['password'].errors?.['pattern']">
+                  Password Minimum eight characters, at least one letter,one special character and
+                      one number!
+                 </span>
+              </span>
+              </div>
+
+        <div class="col-md-6 mb-3" *ngIf="!pageId">
+                <label for="inputNanme4" class="form-label">Confirm Password<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="confirm_password" placeholder="********">
+                <span
+                *ngIf="addForm.controls['confirm_password'].invalid &&
+                  (addForm.controls['confirm_password'].dirty ||addForm.controls['confirm_password'].touched)"
+                class=" ">
+                <span class="errorMessage"
+                  *ngIf="addForm.controls['confirm_password'].errors?.['required'] || addForm.controls.confirm_password.errors?.['whitespace']"
+                >
+                confirm_password is Required
+                </span>
+                <span
+                class="errorMessage"
+                *ngIf="addForm.controls['confirm_password'].errors?.['matching']"
+              >
+              Password & Confirm Password  did not match
+              </span>
+              </span>
+              </div>
+
+        <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">Role<span class="text-danger">*</span></label>
+
+                  <select class="form-select form-control" name="email" formControlName="userType">
+                    <option value="">Select Role </option>
+                    <option *ngFor="let item of roleList" value="{{item.id}}">{{item.roleName}}</option>
+                    <!-- <option  value="1">11</option> -->
+                  </select>
+                  <span
+                  *ngIf="addForm.controls['userType'].invalid &&
+                    (addForm.controls['userType'].dirty ||addForm.controls['userType'].touched)"
+                  class=" ">
+                  <span class="errorMessage"
+                    *ngIf="addForm.controls['userType'].errors?.['required'] || addForm.controls.userType.errors?.['whitespace']"
+                  >
+                  User Type is Required
+                  </span>
+                </span>
+              </div>
+
+        <div class="col-md-6 mb-3">
+                <label for="inputNanme4" class="form-label">User Name<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="userName" placeholder="Jone_asdas">
+                <span
+                *ngIf="
+                  addForm.controls['userName'].invalid &&
+                  (addForm.controls['userName'].dirty ||
+                    addForm.controls['userName'].touched)
+                "
+                class=" "
+              >
+                <span
+                  class="errorMessage"
+                  *ngIf="addForm.controls['userName'].errors?.['required']"
+                >
+                Username is Required
+                </span>
+
+                 <span  class="errorMessage"  *ngIf="addForm.controls['userName'].errors?.pattern">
+                  minimum four characters required , Space and special characters are not allowed
+                 </span>
+              </span>
+              </div>
+
+
+
+        <div class="col-md-12 mb-3">
+                <div class="text-start">
+                <button type="submit" class="btn btn-primary me-2" (click)="pageId ? onUpdate() : onSubmit()">{{pageId ? 'Update' : 'Submit'}}</button>
+                <button type="reset" class="btn btn-secondary" (click)="onReset()">Reset</button>
+              </div>
+
+              </div>
+
+
+
+
+            </form><!-- Vertical Form -->
+
+          </div>
+        </div>
+
+
+
+
+
+</main><!-- End #main -->

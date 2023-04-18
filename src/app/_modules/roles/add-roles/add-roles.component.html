@@ -1,0 +1,71 @@
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>{{pageId?'Update':'Add'}} Role</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" *ngIf="!pageId" >Role Management</li>
+          <li class="breadcrumb-item" *ngIf="pageId"  routerLink="/roles" >Role Management</li>
+          <li class="breadcrumb-item active">{{pageId?'Update':'Add'}} Role  </li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+	  
+	 
+	  <div class="card">
+            <div class="card-body">
+            
+
+              <!-- Vertical Form -->
+              <form class="row pt-4" [formGroup]="addForm">
+                <div class="col-md-6 mb-4">
+                  <label for="inputNanme4" class="form-label">Role Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" formControlName="roleName">
+                  <span
+                  *ngIf="addForm.controls['roleName'].invalid && (addForm.controls['roleName'].dirty || addForm.controls['roleName'].touched)"
+                  class=" ">
+                  <span class="errorMessage" *ngIf="addForm.controls['roleName'].errors?.['required'] || addForm.controls.roleName.errors?.['whitespace']">
+                       Role is Required
+                  </span>
+                  <span class="errorMessage" *ngIf="addForm.controls['roleName'].errors?.['minlength']">
+                    Role must be at least 3 characters long.
+                   </span>
+                  </span>
+                </div>
+<!-- 				  
+				  <div class="col-md-7 mb-4">
+                  <label for="inputNanme4" class="form-label d-block">Responsibility</label>
+                  <div class="form-check d-inline-block">
+                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="1" checked >
+                        <label class="form-check-label" for="1">Read</label>
+                  </div>
+						
+						<div class="form-check d-inline-block ml-5">
+                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="2" checked >
+                        <label class="form-check-label" for="2">Write</label>
+            </div>
+            
+            </div> -->
+				  
+				  <div class="col-md-12 mb-4">
+                  <div class="text-left" *ngIf="!pageId">
+                  <button type="submit" class="btn btn-primary me-2" (click)="onSubmit()">Submit</button>
+                  <button type="reset" class="btn btn-secondary" (click)="onReset()">Reset</button>
+                </div>
+                <div class="text-left" *ngIf="pageId">
+                  <button type="submit" class="btn btn-primary me-2" (click)="onUpdate()">Update</button>
+                  <button type="reset" class="btn btn-secondary" (click)="onCancle()">cancel</button>
+                </div>
+                 
+          </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+	  
+	  
+
+    
+
+  </main><!-- End #main -->

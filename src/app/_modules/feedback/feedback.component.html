@@ -1,0 +1,84 @@
+<main id="main" class="main">
+  <div class="row">
+		<div class="col pagetitle">
+		  <h1>Feedback List</h1>
+		  <nav>
+			<ol class="breadcrumb">
+			  <li class="breadcrumb-item" routerLink="/Feedback">feedback Management</li>
+			  <li class="breadcrumb-item active">Feedback List</li>
+			</ol>
+		  </nav>
+		</div>
+</div>
+			<!-- <div class="col-sm-4"><a routerLink="/faq/add" type="submit" class="btn btn-primary bx-pull-right">+ Add FAQ</a></div>
+		  </div>
+   -->
+
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div class="card">
+              <div class="card-body">
+
+                  <table class="table datatable dataTable-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Sr.No</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Contatct Number</th>
+                      <th scope="col">IP Address</th>
+                      <th scope="col">City</th>
+                      <!-- <th scope="col">Feedback Message</th> -->
+                      <th scope="col">Feedback Type</th>
+                      <!-- <th scope="col">Status</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let feedback of feedbackList| paginate: config;;let i = index">
+                      <th scope="row">{{ page == 1 ? i + 1 : (page - 1) * itemsPerPage + i + 1 }}</th>
+                      <td>{{feedback.name}}</td>
+                      <td>{{feedback.email}}</td>
+                      <td>{{feedback.mobNo}}</td>
+                      <td>{{feedback.ipAddress}}</td>
+                      <td>{{feedback.city?feedback.city:'-'}}</td>
+                      <!-- <td>{{feedback.description?feedback.description:'--'}}</td> -->
+                      <td>{{feedback.type?feedback.type:'--'}}</td>
+                      <!-- <td>	<span class="{{feedback.status?'text-success':'text-danger'}}">
+                        {{feedback.status?'Active':'Inactive'}}
+                      </span></td> -->
+
+                    </tr>
+
+
+                  </tbody>
+                </table>
+                <ng-container *ngIf="totalrecored">
+                  <div class="col-12 text-end">
+                    <pagination-controls
+                      directionLinks:true
+                      showFirstLastButtons:true
+                      (pageChange)="pageChange($event)"
+                      class="my-pagination"
+                    >
+                    </pagination-controls>
+                  </div>
+                </ng-container>
+                <!-- End Default Table Example -->
+              </div>
+            </div>
+
+
+          </div>
+
+
+        </div>
+      </section>
+
+
+
+  </main>
+    <!-- /Page Content -->
+
+  <!-- /Page Wrapper -->

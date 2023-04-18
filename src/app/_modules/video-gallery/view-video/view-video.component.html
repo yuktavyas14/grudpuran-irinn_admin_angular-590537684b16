@@ -1,0 +1,40 @@
+<main id="main" class="main">
+  <div class="row">
+        <div class="col pagetitle">
+          <h1>Gallery Video  List</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item" routerLink="/video-gallery">Gallery Video  Management</li>
+              <li class="breadcrumb-item active">Gallery Video  List</li>
+            </ol>
+          </nav>
+        </div>
+
+            <div class="col-sm-4"><a routerLink="/video-gallery//add" type="submit" class="btn btn-primary bx-pull-right">+ Add TNE</a></div>
+          </div>
+    
+  
+      
+  
+  
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+     
+  
+    <div class="col-md-12">
+    <h3>{{videoDetail?.name}}</h3>
+    <iframe src="{{videoDetail.url}}" frameborder="0"></iframe>
+    
+     
+     
+    <!-- <iframe   [src]="urlSafe" marginwidth="0" marginheight="0" frameborder="0" width="100%" height="400px" scrolling="no" allowfullscreen="allowfullscreen"></iframe> -->
+     
+    </div>
+  </div>
+        
+      </div>
+    </div>
+    
+    
+  </main>

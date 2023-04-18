@@ -1,0 +1,488 @@
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">
+            {{ serviceId ? " Update " : " Add " }} Latest Update
+          </h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/latestupdate">Latest Update Management</a>
+            </li>
+            <li class="breadcrumb-item active">
+              {{ serviceId ? " Update " : " Add " }} Latest Update
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-4">
+      <div class="card-body">
+        <form [formGroup]="addForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Category: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Category"
+                  formControlName="category"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['category'].invalid &&
+                    (addForm.controls['category'].dirty ||
+                      addForm.controls['category'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['category'].errors?.['required'] || addForm.controls['category'].errors?.['whitespace']"
+                  >
+                    Category is Required
+                  </span>
+                  <span
+                    class="errorMessage"
+                    *ngIf="!addForm.controls['category'].errors?.['whitespace'] && addForm.controls['category'].errors?.['minlength']"
+                  >
+                    Category must be at least 3 characters long.
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>
+                  Category Type: <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Category Type"
+                  formControlName="categoryType"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['categoryType'].invalid &&
+                    (addForm.controls['categoryType'].dirty ||
+                      addForm.controls['categoryType'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['categoryType'].errors?.['required'] || addForm.controls['categoryType'].errors?.['whitespace']"
+                  >
+                    Category Type is Required
+                  </span>
+                  <span
+                    class="errorMessage"
+                    *ngIf="!addForm.controls['categoryType'].errors?.['whitespace'] && addForm.controls['categoryType'].errors?.['minlength']"
+                  >
+                    Category type must be at least 3 characters long.
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Company Name: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Company Name"
+                  formControlName="companyName"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['companyName'].invalid &&
+                    (addForm.controls['companyName'].dirty ||
+                      addForm.controls['companyName'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['companyName'].errors?.['required'] || addForm.controls['companyName'].errors?.['whitespace']"
+                  >
+                    Company Name is Required
+                  </span>
+                  <span
+                    class="errorMessage"
+                    *ngIf="!addForm.controls['companyName'].errors?.['whitespace'] && addForm.controls['companyName'].errors?.['minlength']"
+                  >
+                    Category name must be at least 3 characters long.
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>
+                  Company Address: <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Company Address"
+                  formControlName="companyAddress"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['companyAddress'].invalid &&
+                    (addForm.controls['companyAddress'].dirty ||
+                      addForm.controls['companyAddress'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['companyAddress'].errors?.['required'] || addForm.controls['companyAddress'].errors?.['whitespace']"
+                  >
+                    Company Address is Required
+                  </span>
+                  <span
+                    class="errorMessage"
+                    *ngIf="!addForm.controls['companyAddress'].errors?.['whitespace'] && addForm.controls['companyAddress'].errors?.['minlength']"
+                  >
+                    Category address must be at least 6 characters long.
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Manager Name: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Manager Name"
+                  formControlName="managerName"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['managerName'].invalid &&
+                    (addForm.controls['managerName'].dirty ||
+                      addForm.controls['managerName'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['managerName'].errors?.['required'] || addForm.controls['managerName'].errors?.['whitespace']"
+                  >
+                    Manager Name is Required
+                  </span>
+                  <span
+                    class="errorMessage"
+                    *ngIf="!addForm.controls['managerName'].errors?.['whitespace'] && addForm.controls['managerName'].errors?.['minlength']"
+                  >
+                    Manager name must be at least 3 characters long.
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>
+                  Contact Number: <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Contatct Number"
+                  formControlName="contatctNumber"
+                  appNumberOnly
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['contatctNumber'].invalid &&
+                    (addForm.controls['contatctNumber'].dirty ||
+                      addForm.controls['contatctNumber'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['contatctNumber'].errors?.['required'] || addForm.controls['contatctNumber'].errors?.['whitespace']"
+                  >
+                    Contact Number is Required
+                  </span>
+                  <span
+                    class="errorMessage"
+                    *ngIf="!addForm.controls['contatctNumber'].errors?.['whitespace'] && addForm.controls['contatctNumber'].errors?.['minlength']"
+                  >
+                  Contact Number must be at least 7 digits long.
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>
+                  Manager Email: <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Manager Email"
+                  formControlName="managerEmail"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['managerEmail'].invalid &&
+                    (addForm.controls['managerEmail'].dirty ||
+                      addForm.controls['managerEmail'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['managerEmail'].errors?.['required'] || addForm.controls.managerEmail.errors?.['whitespace']"
+                  >
+                    Manager Email is Required
+                  </span>
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['managerEmail'].errors?.['pattern']"
+                  >
+                    Email must be a valid email address
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>
+                  Manager Number: <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Manager Number"
+                  formControlName="managerNumber"
+                  appNumberOnly
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['managerNumber'].invalid &&
+                    (addForm.controls['managerNumber'].dirty ||
+                      addForm.controls['managerNumber'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['managerNumber'].errors?.['required'] || addForm.controls['managerNumber'].errors?.['whitespace']"
+                  >
+                    Manager Number is Required
+                  </span>
+                  <span
+                  class="errorMessage"
+                  *ngIf="!addForm.controls['managerNumber'].errors?.['whitespace'] && addForm.controls['managerNumber'].errors?.['minlength']"
+                >
+                Manager Number must be at least 7 digits long.
+                </span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Main Subject: <span class="text-danger">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Main Subject"
+                  formControlName="mainSubject"
+                />
+                <span
+                  *ngIf="
+                    addForm.controls['mainSubject'].invalid &&
+                    (addForm.controls['mainSubject'].dirty ||
+                      addForm.controls['mainSubject'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['mainSubject'].errors?.['required'] || addForm.controls['mainSubject'].errors?.['whitespace']"
+                  >
+                    Main Subject is Required
+                  </span>
+                  <span
+                  class="errorMessage"
+                  *ngIf="!addForm.controls['mainSubject'].errors?.['whitespace'] && addForm.controls['mainSubject'].errors?.['minlength']"
+                >
+                Manager Number must be at least 3 digits long.
+                </span>
+                </span>
+              </div>
+            </div>
+
+            <!-- ------------------- -->
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> City:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="City"
+                  formControlName="city"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Pin Code:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Pin Code"
+                  formControlName="pincode"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Post Date:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Post Date"
+                  formControlName="postDate"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Bid Opening Date:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="Bid Opening Date"
+                  formControlName="bidOpeningDate"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Bid Opening Time:</label>
+                <input
+                  type="time"
+                  class="form-control"
+                  placeholder="Bid Opening Time"
+                  formControlName="bidOpeningTime"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Bid Start Date:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="Bid Start Date"
+                  formControlName="bidStartDate"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Bid Start Time:</label>
+                <input
+                  type="time"
+                  class="form-control"
+                  placeholder="Bid Start Time"
+                  formControlName="bidStartTime"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Bid End Date:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="Bid End Date"
+                  formControlName="bidEndDate"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> Bid End Time:</label>
+                <input
+                  type="time"
+                  class="form-control"
+                  placeholder="Bid End Time"
+                  formControlName="bidEndTime"
+                />
+              </div>
+            </div>
+
+            <!-- ---------------- -->
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Image:</label>
+                <input
+                  type="file"
+                  name="file"
+                  class="form-control"
+                  placeholder="Image"
+                  (change)="onFileSelected($event)"
+                  #fileUpload
+                />
+                <span
+                  *ngIf="
+                    !serviceId &&
+                    addForm.controls['file'].invalid &&
+                    (addForm.controls['file'].dirty ||
+                      addForm.controls['file'].touched)
+                  "
+                  class=" "
+                >
+                  <span
+                    class="errorMessage"
+                    *ngIf="addForm.controls['file'].errors?.['required']"
+                  >
+                    Image is Required
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="text-left" *ngIf="!serviceId">
+            <button
+              type="button"
+              class="btn btn-secondary me-2"
+              (click)="onReset()"
+            >
+              Reset
+            </button>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+          <div class="text-left" *ngIf="serviceId">
+            <button
+              type="button"
+              class="btn btn-secondary me-2"
+              (click)="onCancle()"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" (click)="onUpdate()">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
